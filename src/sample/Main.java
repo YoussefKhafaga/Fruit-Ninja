@@ -6,6 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Random;
+
 public class Main extends Application {
 
     @Override
@@ -14,6 +16,8 @@ public class Main extends Application {
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
+        ObjectFactory factory = new ObjectFactory();
+        factory.createObject(1);
     }
 
 
