@@ -17,7 +17,8 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
         ObjectFactory factory = new ObjectFactory();
-        factory.createObject(1);
+        GameObject factory1 = factory.createObject(4);
+
     }
 
     public static void main(String[] args) {

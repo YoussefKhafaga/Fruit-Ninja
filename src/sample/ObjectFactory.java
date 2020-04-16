@@ -10,9 +10,23 @@ public class ObjectFactory {
      }
     else if (num==1)
      {
-         object = new Bomb();
+         object = new DangerousBomb();
      }
-    else object = null;
+    else if (num==2)
+     {
+         object = new FatalBomb();
+
+     }
+    else if (num==3)
+     {
+         object = new SpecialFruit1();
+     }
+    else if (num==4)
+     {
+         object = new SpecialFruit2();
+     }
+    else {object=null;}
+
         object.getType();
         object.getXLocation();
         object.getYlocation();

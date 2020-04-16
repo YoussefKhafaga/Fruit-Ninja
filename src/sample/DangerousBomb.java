@@ -1,8 +1,11 @@
 package sample;
+
 import java.util.Random;
 
-public class Bomb implements GameObject{
+public class DangerousBomb extends IsSliced implements GameObject{
     Random random = new Random();
+    public DangerousBomb(){
+    }
     @Override
     public int getXLocation() {
         return random.nextInt(100);

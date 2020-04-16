@@ -2,14 +2,10 @@ package sample;
 
 import java.util.Random;
 
-public class Fruit extends IsSliced implements GameObject{
-
-    public Random random = new Random();
-
-    public Fruit(){
-        super();
+public class FatalBomb extends IsSliced implements GameObject{
+    Random random = new Random();
+    public FatalBomb() {
     }
-
     @Override
     public int getXLocation() {
         return random.nextInt(100);
@@ -22,7 +18,7 @@ public class Fruit extends IsSliced implements GameObject{
 
     @Override
     public String getType() {
-        return "fruit";
+        return "bomb";
     }
 
     @Override
