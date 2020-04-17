@@ -1,7 +1,9 @@
+package sample;
+
 public class Player {
     private static Player p ;
-    int lives ;
-    int score ;
+  private   int lives ;
+    private int score ;
     private Player (){
         this.lives=lives ;
         this.score=score ;
