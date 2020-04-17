@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="392.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="400.0" fitWidth="625.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@Wiki-background.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="532.0" layoutY="2.0" prefHeight="46.0" prefWidth="91.0" text="00:00" textFill="#f8f7f7">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="473.0" layoutY="48.0" prefHeight="35.0" prefWidth="91.0" text="Score :" textFill="#fcfcfc">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
