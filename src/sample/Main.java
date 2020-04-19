@@ -18,6 +18,8 @@ public class Main extends Application {
         primaryStage.show();
         ObjectFactory factory = new ObjectFactory();
         GameObject factory1 = factory.createObject(4);
+        Memento memento = new Memento();
+        memento.Load();
 
     }
 
