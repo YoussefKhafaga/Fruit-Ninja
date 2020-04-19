@@ -1,9 +1,14 @@
 package sample;
 
-public interface GameObject {
-    public int getXLocation();
-    public int getYlocation();
-    public String getType();
-    public int getInitialVelocity();
-    public int getFallingVelocity();
+import javafx.scene.canvas.Canvas;
+import javafx.scene.shape.Path;
+
+public abstract class GameObject {
+    private Canvas canvas;
+    public abstract String getType();
+    public Canvas getCanvas() {
+        return this.canvas;
+    }
+
+
 }

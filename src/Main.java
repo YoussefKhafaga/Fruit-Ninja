@@ -15,8 +15,6 @@ public class Main extends Application {
         AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("Background.fxml"));
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-        ObjectFactory factory = new ObjectFactory();
-        GameObject factory1 = factory.createObject(4);
     }
     public static void main(String[] args) {
 

@@ -1,33 +1,24 @@
 package sample;
 
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+import javafx.scene.shape.Path;
+
 import java.util.Random;
 
-public class DangerousBomb extends IsSliced implements GameObject{
-    Random random = new Random();
-    public DangerousBomb(){
-    }
-    @Override
-    public int getXLocation() {
-        return random.nextInt(100);
-    }
+public class DangerousBomb extends GameObject{
+    private Canvas canvas;
 
-    @Override
-    public int getYlocation() {
-        return random.nextInt(100);
+
+    public DangerousBomb() {
+        canvas = new Canvas();
+        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc.drawImage(new Image("dangerousbomb.png"),0,0,40,40);
     }
 
     @Override
     public String getType() {
-        return "bomb";
-    }
-
-    @Override
-    public int getInitialVelocity() {
-        return random.nextInt(80);
-    }
-
-    @Override
-    public int getFallingVelocity() {
-        return random.nextInt(100);
+        return "DangerousBomb";
     }
 }

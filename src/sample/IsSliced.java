@@ -1,6 +1,6 @@
 package sample;
 
-public abstract class IsSliced {
+public class IsSliced {
     private boolean isSliced;
     private int livesLost ;
     private int pointsScored;
