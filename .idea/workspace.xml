@@ -1,32 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BranchesTreeState">
-    <expand>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-      <path>
-        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
-        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
-      </path>
-    </expand>
+    <expand />
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="player class">
-      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/sample/sample.fxml" beforeDir="false" />
+    <list default="true" id="a38d6722-b8a8-44fe-81a6-8e248b2d4b83" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml~FirstScene" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assigment_3/Background.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assigment_3/Banana.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assigment_3/Controller/GameController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assigment_3/Controller/MenuController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assigment_3/Main.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assigment_3/Menu.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assigment_3/animation/RandomPath.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assigment_3/animation/Render.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assigment_3/background.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assigment_3/dangerousbomb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assigment_3/fatalbomb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assigment_3/menu.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assigment_3/strawberry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/out/production/Assigment_3/watermelon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Background.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Banana.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/Menu.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/background.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/dangerousbomb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/fatalbomb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/menu.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/strawberry.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/watermelon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/GameController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/MenuController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/animation/RandomPath.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/animation/Render.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at________Default_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at________Default_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at________Default_1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at________Default_1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at________Default_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at________Default_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at________Default_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at________Default_3.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at________Default_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at________Default_.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assigment_3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Assigment_3.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assigment_3/META-INF/Assigment_3.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assigment_3/sample/Bomb.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assigment_3/sample/Controller.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assigment_3/sample/DangerousBomb.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assigment_3/sample/DangerousBomb.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assigment_3/sample/FatalBomb.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assigment_3/sample/FatalBomb.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assigment_3/sample/Fruit.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assigment_3/sample/Fruit.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assigment_3/sample/GameObject.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assigment_3/sample/GameObject.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assigment_3/sample/IsSliced.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assigment_3/sample/IsSliced.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assigment_3/sample/Main.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assigment_3/sample/ObjectFactory.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assigment_3/sample/ObjectFactory.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assigment_3/sample/SpecialFruit1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assigment_3/sample/SpecialFruit1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assigment_3/sample/SpecialFruit2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assigment_3/sample/SpecialFruit2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assigment_3/sample/sample.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/resources/Menu.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Controller.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/DangerousBomb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/DangerousBomb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/FatalBomb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/FatalBomb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Fruit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/Fruit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/GameObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/GameObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/IsSliced.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/IsSliced.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Main.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/ObjectFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/ObjectFactory.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/SpecialFruit1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/SpecialFruit1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/sample/SpecialFruit2.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/sample/SpecialFruit2.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -93,7 +141,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectId" id="1aMYl8h3oZZ8EfkbudrL8WIloFu" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectReloadState">
     <option name="STATE" value="0" />
   </component>
@@ -114,14 +164,19 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../java/jdom-2.0.6.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="recentsLimit" value="5" />
     <property name="settings.editor.selected.configurable" value="copyright" />
   </component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Youssef\Desktop\Assigment_3\resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main (1)">
     <configuration default="true" type="Applet" factoryName="Applet">
       <module name="" />
       <option name="MAIN_CLASS_NAME" />
@@ -147,13 +202,21 @@
       <Host>localhost</Host>
       <Port>5050</Port>
     </configuration>
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Assigment_3" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="sample.Main" />
       <module name="Assigment_3" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="sample.*" />
+          <option name="PATTERN" value="Controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -200,13 +263,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main (1)" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="" />
+      <changelist id="a38d6722-b8a8-44fe-81a6-8e248b2d4b83" name="Default Changelist" comment="" />
       <created>1359379246138</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -236,10 +304,15 @@
     <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="574" y="128" key="#com.intellij.ide.util.MemberChooser" timestamp="1587053941035">
+    <state x="574" y="128" key="#com.intellij.ide.util.MemberChooser" timestamp="1587590274215">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="128" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1587053941035" />
+    <state x="510" y="113" key="#com.intellij.ide.util.MemberChooser/0.0.1366.728@0.0.1366.728" timestamp="1587231923787" />
+    <state x="574" y="128" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1587590274215" />
+    <state x="479" y="247" width="407" height="242" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1587231342743">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="479" y="247" width="407" height="242" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1366.728@0.0.1366.728" timestamp="1587231342743" />
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1587053986427">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -248,22 +321,42 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="501" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586886962426" />
-    <state width="1493" height="4" key="GridCell.Tab.0.bottom" timestamp="1587053971963">
+    <state width="1493" height="336" key="GridCell.Tab.0.bottom" timestamp="1587593706646">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="4" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587053971963" />
-    <state width="1493" height="4" key="GridCell.Tab.0.center" timestamp="1587053971963">
+    <state width="1322" height="174" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1587323470824" />
+    <state width="1493" height="336" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1587593706646" />
+    <state width="1493" height="336" key="GridCell.Tab.0.center" timestamp="1587593706646">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="4" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1587053971963" />
-    <state width="1493" height="4" key="GridCell.Tab.0.left" timestamp="1587053971963">
+    <state width="1322" height="174" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1587323470824" />
+    <state width="1493" height="336" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1587593706646" />
+    <state width="1493" height="336" key="GridCell.Tab.0.left" timestamp="1587593706645">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="4" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1587053971963" />
-    <state width="1493" height="4" key="GridCell.Tab.0.right" timestamp="1587053971963">
+    <state width="1322" height="174" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1587323470824" />
+    <state width="1493" height="336" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1587593706645" />
+    <state width="1493" height="336" key="GridCell.Tab.0.right" timestamp="1587593706646">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="4" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1587053971963" />
+    <state width="1322" height="174" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1587323470824" />
+    <state width="1493" height="336" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1587593706646" />
+    <state width="1322" height="217" key="GridCell.Tab.1.bottom" timestamp="1587251859821">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="217" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1587251859821" />
+    <state width="1322" height="217" key="GridCell.Tab.1.center" timestamp="1587251859821">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="217" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1587251859821" />
+    <state width="1322" height="217" key="GridCell.Tab.1.left" timestamp="1587251859821">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="217" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1587251859821" />
+    <state width="1322" height="217" key="GridCell.Tab.1.right" timestamp="1587251859821">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1322" height="217" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1587251859821" />
     <state x="277" y="0" key="SettingsEditor" timestamp="1586886970176">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -280,5 +373,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1586972287723" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1587242520959">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1587242520959" />
   </component>
 </project>

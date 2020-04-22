@@ -1,0 +1,19 @@
+<changelist name="Uncommitted_changes_before_rebase_[Default]" date="1587325248134" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Default]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before rebase [Default]" />
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/Assigment_3/sample/Controller.class" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/Assigment_3/Main.class" />
+    <option name="AFTER_PATH" value="out/production/Assigment_3/Main.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_rebase_[Default]/Main.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="out/production/Assigment_3/META-INF/Assigment_3.kotlin_module" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+</changelist>
