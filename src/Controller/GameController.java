@@ -5,22 +5,28 @@ import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import sample.GameObject;
 
+
 public class GameController {
     Render render;
 
     @FXML
     AnchorPane anchor;
-
+    @FXML
+Label Score ;
         Duration x;
+        int i=0;
 
     private GameObject gameObject;
     @FXML
@@ -40,6 +46,19 @@ public class GameController {
             PathTransition pathTransition = render.generateTransitions(gameObject);
             sequentialTransition.getChildren().add(pathTransition);
             sequentialTransition.play();
+          canvas.setOnDragDetected(new EventHandler<MouseEvent>() {
+              @Override
+              public void handle(MouseEvent event) {
+                  canvas.startFullDrag();
+                  canvas.setOnMouseDragEntered(new EventHandler<MouseDragEvent>() {
+                      @Override
+                      public void handle(MouseDragEvent event) {
+                           Score.setText("Score : "+ i++);
+                      }
+                  });
+
+              }
+          });
 
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
