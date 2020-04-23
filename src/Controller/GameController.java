@@ -1,79 +1,98 @@
 package Controller;
 
-import animation.Render;
-import javafx.animation.KeyFrame;
-import javafx.animation.PathTransition;
-import javafx.animation.SequentialTransition;
+import Logic.GameObject;
+import animation.TimeLineWrapper;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.canvas.Canvas;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import javafx.util.Duration;
-import sample.GameObject;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
-public class GameController {
-    Render render;
+public class GameController implements Initializable {
 
+    @FXML
+    AnchorPane anchorPane;
     @FXML
     AnchorPane anchor;
     @FXML
-Label Score ;
-        Duration x;
-        int i=0;
-
-    private GameObject gameObject;
+    Label Score;
     @FXML
-    void initialize() {
-        Button btn = new Button("pause");
-        Button btn1 = new Button("unpause");
-        btn.setLayoutX(200);
-        btn.setLayoutY(200);
-        btn1.setLayoutX(250);
-        btn1.setLayoutY(200);
-        render = new Render();
-        SequentialTransition sequentialTransition = new SequentialTransition();
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), e -> {
-            gameObject = render.createObject();
-            Canvas canvas =gameObject.getCanvas();
-            anchor.getChildren().addAll(canvas);
-            PathTransition pathTransition = render.generateTransitions(gameObject);
-            sequentialTransition.getChildren().add(pathTransition);
-            sequentialTransition.play();
-          canvas.setOnDragDetected(new EventHandler<MouseEvent>() {
-              @Override
-              public void handle(MouseEvent event) {
-                  canvas.startFullDrag();
-                  canvas.setOnMouseDragEntered(new EventHandler<MouseDragEvent>() {
-                      @Override
-                      public void handle(MouseDragEvent event) {
-                           Score.setText("Score : "+ i++);
-                      }
-                  });
+    Button resume;
+    @FXML
+    Button save;
+    @FXML
+    HBox pause;
+    private TimeLineWrapper [] timeLineWrappers = new TimeLineWrapper[1];
 
-              }
-          });
-
-        }));
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
-            anchor.getChildren().addAll(btn,btn1);
-            btn.setOnAction(me->{
-                timeline.pause();
-                sequentialTransition.pause();
-                x = sequentialTransition.getCurrentTime();
-            });
-            btn1.setOnAction(mee->{
-                timeline.playFrom(x);
-                sequentialTransition.playFrom(x);
-            });
+    @FXML
+    public void keyPressed(KeyEvent event) {
+        if (event.getCode() == KeyCode.ESCAPE) {
+            for(TimeLineWrapper timeLineWrapper : timeLineWrappers){
+                timeLineWrapper.getTimeline().pause();
+                timeLineWrapper.getPathTransition().pause();
+            }
+        }
     }
+    private int i = 0;
+
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        TimeLineWrapper timeLineWrapper = new TimeLineWrapper();
+        timeLineWrappers[0] = timeLineWrapper;
+        timeLineWrapper.generateTimeLine(anchor);
+        Timeline timeline = timeLineWrapper.getTimeline();
+        anchor.setOnDragDetected(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                slice(event, timeLineWrapper);
+            }
+        });
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.playFrom(Duration.seconds(4));
+
+
+    }
+
+    private void slice(MouseEvent event, TimeLineWrapper timeLineWrapper) {
+        anchor.startFullDrag();
+        GameObject gameObject = timeLineWrapper.getGameObject();
+        gameObject.getCanvas().setOnMouseDragEntered(new EventHandler<MouseDragEvent>() {
+            @Override
+            public void handle(MouseDragEvent event) {
+                gameObject.getCanvas().setDisable(true);
+                gameObject.setSliced(true);
+                Score.setText("Score : " + ++i);
+                timeLineWrapper.getPathTransition().stop();
+                timeLineWrapper.fade();
+            }
+        });
+    }
+
+    private void checkObject(GameObject gameObject) {
+        if (!gameObject.isSliced()) {
+            String type = gameObject.getType();
+            if (type.equals("watermelon.png") || type.equals("strawberry.png") || type.equals("Banana.png")) ;
+        }
+
+    }
+
+    private void saveGame() {
+
+    }
+
 
 }
 

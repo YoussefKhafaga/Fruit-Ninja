@@ -3,18 +3,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import sample.GameObject;
-import sample.ObjectFactory;
-
-import java.util.Random;
 
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("Background.fxml"));
-        primaryStage.setScene(new Scene(root));
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
         primaryStage.show();
+        scene.getRoot().requestFocus();
     }
     public static void main(String[] args) {
 

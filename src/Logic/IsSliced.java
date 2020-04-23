@@ -1,4 +1,4 @@
-package sample;
+package Logic;
 
 public class IsSliced {
     private boolean isSliced;
