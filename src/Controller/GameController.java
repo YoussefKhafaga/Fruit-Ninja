@@ -1,48 +1,43 @@
 package Controller;
+
 import animation.Render;
 import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.Timeline;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseDragEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 import sample.GameObject;
-import sample.Time;
+
 
 public class GameController {
     Render render;
+
     @FXML
     AnchorPane anchor;
+    @FXML
+Label Score ;
         Duration x;
-        public Label tim = new Label();
+        int i=0;
+
     private GameObject gameObject;
     @FXML
     void initialize() {
-        Time time = new Time();
-        time.runTimer();
-        tim.setLayoutX(100);
-        tim.setLayoutY(100);
-        Button btn = new Button("",new ImageView("pause.png"));
-        btn.setLayoutX(75);
-        btn.setLayoutY(-75);
-        Image image = new Image(("x red.png"));
-        Label x1 = new Label("",new ImageView("X.png"));
-        x1.setLayoutX(75);
-        x1.setLayoutY(-100);
-        Label x2 = new Label("",new ImageView("X.png"));
-        x2.setLayoutX(105);
-        x2.setLayoutY(-100);
-        Label x3 = new Label("",new ImageView("X.png"));
-        x3.setLayoutX(135);
-        x3.setLayoutY(-100);
+        Button btn = new Button("pause");
+        Button btn1 = new Button("unpause");
+        btn.setLayoutX(200);
+        btn.setLayoutY(200);
+        btn1.setLayoutX(250);
+        btn1.setLayoutY(200);
         render = new Render();
-        final Boolean[] t = {true};
         SequentialTransition sequentialTransition = new SequentialTransition();
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), e -> {
             gameObject = render.createObject();
@@ -51,23 +46,34 @@ public class GameController {
             PathTransition pathTransition = render.generateTransitions(gameObject);
             sequentialTransition.getChildren().add(pathTransition);
             sequentialTransition.play();
+          canvas.setOnDragDetected(new EventHandler<MouseEvent>() {
+              @Override
+              public void handle(MouseEvent event) {
+                  canvas.startFullDrag();
+                  canvas.setOnMouseDragEntered(new EventHandler<MouseDragEvent>() {
+                      @Override
+                      public void handle(MouseDragEvent event) {
+                           Score.setText("Score : "+ i++);
+                      }
+                  });
+
+              }
+          });
+
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
-            anchor.getChildren().addAll(tim,btn,x1,x2,x3);
+            anchor.getChildren().addAll(btn,btn1);
             btn.setOnAction(me->{
-                if(t[0]) {
-                    x1.setGraphic(new ImageView(image));
-                    t[0] =false;
-                    timeline.pause();
-                    sequentialTransition.pause();
-                    x = sequentialTransition.getCurrentTime();}
-                else{
-                    t[0] =true;
-                    timeline.playFrom(x);
-                    sequentialTransition.playFrom(x);
-
-                }
+                timeline.pause();
+                sequentialTransition.pause();
+                x = sequentialTransition.getCurrentTime();
+            });
+            btn1.setOnAction(mee->{
+                timeline.playFrom(x);
+                sequentialTransition.playFrom(x);
             });
     }
+
 }
+
