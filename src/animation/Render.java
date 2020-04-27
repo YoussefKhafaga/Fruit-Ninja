@@ -1,10 +1,10 @@
 package animation;
-
 import javafx.animation.FadeTransition;
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+
 import javafx.util.Duration;
 import Logic.GameObject;
 import Logic.ObjectFactory;

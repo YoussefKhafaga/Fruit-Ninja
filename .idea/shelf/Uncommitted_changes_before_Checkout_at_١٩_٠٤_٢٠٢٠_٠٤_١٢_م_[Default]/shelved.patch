@@ -1,0 +1,14 @@
+Index: src/sample/sample.fxml
+===================================================================
+--- src/sample/sample.fxml	(revision 2cb827b870d3e8de9eb1123e85ea2859bd7d4365)
++++ src/sample/sample.fxml	(revision 2cb827b870d3e8de9eb1123e85ea2859bd7d4365)
+@@ -1,8 +0,0 @@
+-<?import javafx.geometry.Insets?>
+-<?import javafx.scene.layout.GridPane?>
+-
+-<?import javafx.scene.control.Button?>
+-<?import javafx.scene.control.Label?>
+-<GridPane fx:controller="sample.Controller"
+-          xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
+-</GridPane>
+\ No newline at end of file
