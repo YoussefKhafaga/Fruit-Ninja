@@ -29,7 +29,7 @@ public class GameController implements Initializable {
     @FXML
     Label Score;
     @FXML
-    Button resume;
+    Button exit;
     @FXML
     Button save;
     @FXML
@@ -64,7 +64,8 @@ public class GameController implements Initializable {
             }
         });
         timeline.playFrom(Duration.seconds(4));
-        resume.setOnAction(e->resumeGame());
+        timeline.setCycleCount(-1);
+        exit.setOnAction(e->exitGame());
         save.setOnAction(e->saveGame());
 
     }
@@ -91,7 +92,7 @@ public class GameController implements Initializable {
         }
 
     }
-    private void resumeGame(){
+    private void exitGame(){
         settings.setDisable(true);
         settings.setVisible(false);
         for(Projector projector : projectors){

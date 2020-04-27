@@ -14,7 +14,6 @@ import java.util.Random;
 
 public class Render {
     private ObjectFactory objectFactory;
-//    private Render render;
 
     public Render() {
         objectFactory = new ObjectFactory();

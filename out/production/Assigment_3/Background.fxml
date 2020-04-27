@@ -9,40 +9,40 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" onKeyReleased="#keyPressed" prefHeight="392.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
+<AnchorPane fx:id="anchorPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onKeyPressed="#keyPressed" prefHeight="392.0" prefWidth="625.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.GameController">
    <children>
       <ImageView fitHeight="400.0" fitWidth="625.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@background.jpg" />
          </image>
       </ImageView>
-      <Label layoutX="532.0" layoutY="2.0" onKeyPressed="#keyPressed" onKeyTyped="#keyPressed" prefHeight="46.0" prefWidth="91.0" text="00:00" textFill="#f8f7f7">
+      <Label fx:id="Timer" layoutX="532.0" layoutY="2.0" prefHeight="46.0" prefWidth="91.0" text="00:00" textFill="#f8f7f7">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <Label fx:id="Score" layoutX="449.0" layoutY="48.0" prefHeight="35.0" prefWidth="145.0" text="Score : 0000" textFill="#fcfcfc">
+      <Label fx:id="Score" layoutX="473.0" layoutY="48.0" prefHeight="35.0" prefWidth="133.0" text="Score : 0000" textFill="#fcfcfc">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
       </Label>
-      <AnchorPane fx:id="anchor" layoutX="-57.0" layoutY="-7.0" onKeyPressed="#keyPressed" prefHeight="490.0" prefWidth="683.0">
+      <AnchorPane fx:id="anchor" layoutX="-78.0" layoutY="1.0" prefHeight="391.0" prefWidth="703.0">
          <children>
-            <HBox fx:id="settings" disable="true" layoutX="58.0" layoutY="195.0" prefHeight="46.0" prefWidth="625.0" spacing="60.0" visible="false">
+            <HBox fx:id="settings" disable="true" layoutX="78.0" layoutY="146.0" prefHeight="100.0" prefWidth="631.0" spacing="60.0" visible="false">
                <children>
-                  <Button fx:id="resume" mnemonicParsing="false" prefHeight="53.0" prefWidth="245.0" text="Resume">
+                  <Button fx:id="resume" mnemonicParsing="false" prefHeight="45.0" prefWidth="227.0" text="Resume">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <Button fx:id="save" mnemonicParsing="false" prefHeight="52.0" prefWidth="236.0" text="Save">
+                  <Button fx:id="save" mnemonicParsing="false" prefHeight="43.0" prefWidth="235.0" text="Save">
                      <font>
                         <Font size="25.0" />
                      </font>
                   </Button>
                </children>
                <padding>
-                  <Insets left="40.0" />
+                  <Insets left="50.0" right="50.0" top="30.0" />
                </padding>
             </HBox>
          </children></AnchorPane>

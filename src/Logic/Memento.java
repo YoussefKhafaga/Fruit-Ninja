@@ -11,8 +11,8 @@
 //public class Memento {
 //
 //    File inputFile =  new File("Data.xml");
-//  //  SAXBuilder saxBuilder = new SAXBuilder();
-//  //  Document document;
+//     SAXBuilder saxBuilder = new SAXBuilder();
+//     Document document;
 //    {
 //        try {
 //            document = saxBuilder.build(inputFile);
