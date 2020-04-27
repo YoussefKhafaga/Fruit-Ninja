@@ -16,14 +16,6 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
         scene.getRoot().requestFocus();
-         URL resource = getClass().getResource("fruitninja.mp3");
-         Media media = new Media(resource.toString());
-        final MediaPlayer mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.play();
-        mediaPlayer.setCycleCount(AudioClip.INDEFINITE);
-        primaryStage.setScene(new Scene(root));
-        primaryStage.show();
-        primaryStage.setResizable(false);
     }
     public static void main(String[] args) {
         launch(args);
