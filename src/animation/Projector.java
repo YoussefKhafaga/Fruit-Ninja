@@ -12,13 +12,13 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
-public class TimeLineWrapper {
+public class Projector {
     private Timeline timeline;
     private PathTransition pathTransition;
     private GameObject gameObject;
     private Render render;
 
-    public TimeLineWrapper() {
+    public Projector() {
         this.render = new Render();
     }
 

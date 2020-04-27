@@ -1,7 +1,7 @@
 package Controller;
 
 import Logic.GameObject;
-import animation.TimeLineWrapper;
+import animation.Projector;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -34,14 +34,14 @@ public class GameController implements Initializable {
     Button save;
     @FXML
     HBox pause;
-    private TimeLineWrapper [] timeLineWrappers = new TimeLineWrapper[1];
+    private Projector[] projectors = new Projector[1];
 
     @FXML
     public void keyPressed(KeyEvent event) {
         if (event.getCode() == KeyCode.ESCAPE) {
-            for(TimeLineWrapper timeLineWrapper : timeLineWrappers){
-                timeLineWrapper.getTimeline().pause();
-                timeLineWrapper.getPathTransition().pause();
+            for(Projector projector : projectors){
+                projector.getTimeline().pause();
+                projector.getPathTransition().pause();
             }
         }
     }
@@ -50,14 +50,14 @@ public class GameController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        TimeLineWrapper timeLineWrapper = new TimeLineWrapper();
-        timeLineWrappers[0] = timeLineWrapper;
-        timeLineWrapper.generateTimeLine(anchor);
-        Timeline timeline = timeLineWrapper.getTimeline();
+        Projector projector = new Projector();
+        projectors[0] = projector;
+        projector.generateTimeLine(anchor);
+        Timeline timeline = projector.getTimeline();
         anchor.setOnDragDetected(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                slice(event, timeLineWrapper);
+                slice(event, projector);
             }
         });
         timeline.setCycleCount(Timeline.INDEFINITE);
@@ -66,17 +66,17 @@ public class GameController implements Initializable {
 
     }
 
-    private void slice(MouseEvent event, TimeLineWrapper timeLineWrapper) {
+    private void slice(MouseEvent event, Projector projector) {
         anchor.startFullDrag();
-        GameObject gameObject = timeLineWrapper.getGameObject();
+        GameObject gameObject = projector.getGameObject();
         gameObject.getCanvas().setOnMouseDragEntered(new EventHandler<MouseDragEvent>() {
             @Override
             public void handle(MouseDragEvent event) {
                 gameObject.getCanvas().setDisable(true);
                 gameObject.setSliced(true);
                 Score.setText("Score : " + ++i);
-                timeLineWrapper.getPathTransition().stop();
-                timeLineWrapper.fade();
+                projector.getPathTransition().stop();
+                projector.fade();
             }
         });
     }

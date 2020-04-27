@@ -9,7 +9,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         AnchorPane root = FXMLLoader.<AnchorPane>load(getClass().getResource("Background.fxml"));
-        System.out.println(12345);
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
