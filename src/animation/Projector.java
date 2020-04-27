@@ -17,6 +17,7 @@ public class Projector {
     private PathTransition pathTransition;
     private GameObject gameObject;
     private Render render;
+    private Duration pause;
 
     public Projector() {
         this.render = new Render();
@@ -26,7 +27,6 @@ public class Projector {
         timeline = new Timeline(new KeyFrame(Duration.millis(4500),e->{
         gameObject = render.createObject();
         pathTransition = render.generateTransitions(gameObject);
-        pathTransition.setDelay(Duration.seconds(2));
         pathTransition.play();
         anchor.getChildren().addAll(gameObject.getCanvas());
         }));
@@ -45,10 +45,14 @@ public class Projector {
             canvas.setDisable(true);
         });
     }
-    public void playTimeLine(){
 
+    public Duration getPause() {
+        return pause;
     }
 
+    public void setPause(Duration pause) {
+        this.pause = pause;
+    }
 
     public Timeline getTimeline() {
         return timeline;

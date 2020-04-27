@@ -33,15 +33,18 @@ public class GameController implements Initializable {
     @FXML
     Button save;
     @FXML
-    HBox pause;
+    HBox settings;
     private Projector[] projectors = new Projector[1];
 
     @FXML
     public void keyPressed(KeyEvent event) {
         if (event.getCode() == KeyCode.ESCAPE) {
+                settings.setDisable(false);
+                settings.setVisible(true);
             for(Projector projector : projectors){
                 projector.getTimeline().pause();
                 projector.getPathTransition().pause();
+                projector.setPause(projector.getPathTransition().getCurrentTime());
             }
         }
     }
@@ -60,9 +63,9 @@ public class GameController implements Initializable {
                 slice(event, projector);
             }
         });
-        timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.playFrom(Duration.seconds(4));
-
+        resume.setOnAction(e->resumeGame());
+        save.setOnAction(e->saveGame());
 
     }
 
@@ -87,6 +90,14 @@ public class GameController implements Initializable {
             if (type.equals("watermelon.png") || type.equals("strawberry.png") || type.equals("Banana.png")) ;
         }
 
+    }
+    private void resumeGame(){
+        settings.setDisable(true);
+        settings.setVisible(false);
+        for(Projector projector : projectors){
+            projector.getTimeline().play();
+            projector.getPathTransition().playFrom(projector.getPause());
+        }
     }
 
     private void saveGame() {
