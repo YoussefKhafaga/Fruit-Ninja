@@ -1,6 +1,7 @@
 package Controller;
 
 import Logic.GameObject;
+import Logic.Player;
 import animation.Projector;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
@@ -40,7 +41,10 @@ public class GameController implements Initializable {
     };
     Duration x;
     Duration y;
-
+Player player ;
+public GameController (Player player){
+    this.player=player ;
+}
     public void keyPressed(KeyEvent event) {
         if (event.getCode() == KeyCode.ESCAPE) {
             settings.setDisable(false);
