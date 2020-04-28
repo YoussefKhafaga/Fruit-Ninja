@@ -17,6 +17,7 @@ import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
@@ -34,40 +35,54 @@ public class GameController implements Initializable {
     Button save;
     @FXML
     HBox settings;
-    private Projector[] projectors = new Projector[1];
+    private Projector [] projectors = {
+            new Projector()
+    };
+    Duration x;
+    Duration y;
 
-    @FXML
     public void keyPressed(KeyEvent event) {
         if (event.getCode() == KeyCode.ESCAPE) {
-                settings.setDisable(false);
-                settings.setVisible(true);
-            for(Projector projector : projectors){
+            settings.setDisable(false);
+            settings.setVisible(true);
+            for (Projector projector : projectors) {
                 projector.getTimeline().pause();
                 projector.getPathTransition().pause();
-                projector.setPause(projector.getPathTransition().getCurrentTime());
+                x = projector.getTimeline().getCurrentTime();
+                y = projector.getPathTransition().getCurrentTime();
             }
         }
     }
+
     private int i = 0;
 
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Projector projector = new Projector();
-        projectors[0] = projector;
-        projector.generateTimeLine(anchor);
-        Timeline timeline = projector.getTimeline();
-        anchor.setOnDragDetected(new EventHandler<MouseEvent>() {
+        anchorPane.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
-            public void handle(MouseEvent event) {
-                slice(event, projector);
+            public void handle(KeyEvent event) {
+                keyPressed(event);
             }
         });
-        timeline.playFrom(Duration.seconds(4));
-        timeline.setCycleCount(-1);
-        exit.setOnAction(e->exitGame());
-        save.setOnAction(e->saveGame());
 
+       // for(Projector projector : projectors){
+        Projector projector = new Projector();
+            projector.generateTimeLine(anchor, 200.0,5001.0);
+            Timeline timeline = projector.getTimeline();
+            projectors[0]=projector;
+            timeline.setCycleCount(Timeline.INDEFINITE);
+            timeline.playFrom(Duration.seconds(4));
+            anchor.setOnDragDetected(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    slice(event,projector);
+                }
+            });
+      //  }
+
+        exit.setOnAction(e -> resumeGame());
+        save.setOnAction(e -> saveGame());
     }
 
     private void slice(MouseEvent event, Projector projector) {
@@ -80,7 +95,7 @@ public class GameController implements Initializable {
                 gameObject.setSliced(true);
                 Score.setText("Score : " + ++i);
                 projector.getPathTransition().stop();
-                projector.fade();
+                projector.fade(anchor);
             }
         });
     }
@@ -92,12 +107,16 @@ public class GameController implements Initializable {
         }
 
     }
-    private void exitGame(){
+
+    private void resumeGame() {
         settings.setDisable(true);
         settings.setVisible(false);
-        for(Projector projector : projectors){
-            projector.getTimeline().play();
-            projector.getPathTransition().playFrom(projector.getPause());
+        for (Projector projector : projectors) {
+            Timeline timeline = projector.getTimeline();
+            timeline.playFrom(x);
+            projector.getPathTransition().playFrom(y);
+            System.out.println(x);
+            System.out.println(y);
         }
     }
 

@@ -4,11 +4,11 @@ public class ObjectFactory {
     public GameObject createObject(int num) {
         GameObject object;
         if (num == 0) {
-            object = new Fruit("watermelon.png", "watermelonSliced.png");
+            object = new Fruit("watermelon.png", "watermelonSliced.png","watermellon");
         }else if (num == 1) {
-            object = new Fruit("strawberry.png", "strawberrySliced.png");
+            object = new Fruit("strawberry.png", "strawberrySliced.png","strawberry");
         }else if (num == 2) {
-                object = new Fruit("Banana.png","bananaSliced1.png");
+                object = new Fruit("Banana.png","bananaSliced1.png","banana");
         } else if (num == 3) {
             object = new DangerousBomb("dangerousbomb.png","boom.png");
         } else if (num == 4) {

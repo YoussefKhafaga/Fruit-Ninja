@@ -8,14 +8,12 @@ import javafx.util.Duration;
 
 import java.util.Random;
 
-public class ObjectPath {
-    private PathTransition pathTransition;
-    private Duration duration;
+public class PathFactory {
 
-    public ObjectPath() {
+    public PathFactory() {
     }
 
-    public PathTransition pathGenerator() {
+    public Path generatePath() {
         Random random = new Random();
         int x = random.nextInt(4);
         Path path = new Path();
@@ -48,23 +46,6 @@ public class ObjectPath {
                 break;
         }
         path.getElements().addAll(moveTo, quadCurveTo);
-        pathTransition = new PathTransition();
-        pathTransition.setPath(path);
-        return pathTransition;
-    }
-    public PathTransition getPathTransition() {
-        return pathTransition;
-    }
-
-    public void setPathTransition(PathTransition pathTransition) {
-        this.pathTransition = pathTransition;
-    }
-
-    public Duration getDuration() {
-        return duration;
-    }
-
-    public void setDuration(Duration duration) {
-        this.duration = duration;
+        return path;
     }
 }

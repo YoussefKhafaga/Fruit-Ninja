@@ -7,16 +7,20 @@ import javafx.scene.image.Image;
 import java.util.Random;
 
 public class Fruit extends GameObject {
-    private String type;
+    private String name;
 
-    public Fruit(String st1 , String st2) {
-        super(st1,st2);
-        this.type = st1;
+    public Fruit(String image1 , String image2,String name) {
+        super(image1,image2);
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
     }
 
     @Override
         public String getType () {
-            return this.type;
+            return "Fruit";
         }
 
     }
