@@ -1,8 +1,13 @@
 package Controller;
 
+import Logic.Fruit;
+import Logic.GameLevels.Level;
 import Logic.GameObject;
 import Logic.Player;
+import Logic.Time;
 import animation.Projector;
+import javafx.animation.KeyFrame;
+import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -23,81 +28,71 @@ import java.util.ResourceBundle;
 
 
 public class GameController implements Initializable {
-
     @FXML
-    AnchorPane anchorPane;
+    private AnchorPane anchorPane;
     @FXML
-    AnchorPane anchor;
+    private AnchorPane anchor;
     @FXML
-    Label Score;
+    private Label Score;
     @FXML
-    Button exit;
+    private Button exit;
     @FXML
-    Button save;
+    private Button save;
     @FXML
-    HBox settings;
-    private Projector [] projectors = {
-            new Projector()
-    };
-    Duration x;
-    Duration y;
-Player player ;
-public GameController (Player player){
-    this.player=player ;
-}
-    public void keyPressed(KeyEvent event) {
-        if (event.getCode() == KeyCode.ESCAPE) {
-            settings.setDisable(false);
-            settings.setVisible(true);
-            for (Projector projector : projectors) {
-                projector.getTimeline().pause();
-                projector.getPathTransition().pause();
-                x = projector.getTimeline().getCurrentTime();
-                y = projector.getPathTransition().getCurrentTime();
-            }
+    private HBox settings;
+    private ArrayList<Projector>  projectors =  new ArrayList<>();
+    private Timeline gameTimeLine;
+    private Duration y;
+    private Player player;
+    private Level level;
+    @FXML
+    void keyPressed(KeyEvent event){
+        if(event.equals(KeyCode.ESCAPE)){
+            System.out.println(1234);
         }
     }
 
-    private int i = 0;
-
-
+    public GameController(Player player, Level level) {
+        this.player = player;
+        this.level = level;
+    }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        anchorPane.setOnKeyPressed(new EventHandler<KeyEvent>() {
+        anchor.setOnDragDetected(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(KeyEvent event) {
-                keyPressed(event);
+            public void handle(MouseEvent mouseEvent) {
+                anchor.startFullDrag();
             }
         });
+        gameTimeLine = new Timeline(new KeyFrame(Duration.millis(level.getDuration() + 2* level.getDelay()), e -> {
+            for (int i=0;i<3;i++) {
+                Projector projector = new Projector(i*level.getDelay(), level.getDuration());
+                PathTransition pathTransition = projector.getPathTransition();
+                projectors.add(projector);
+                anchor.getChildren().addAll(projector.getGameObject().getCanvas());
+                slice(projector);
+                pathTransition.setOnFinished(f->{
+                    projectors.remove(projector);
+                    anchor.getChildren().remove(projector.getGameObject().getCanvas());
+                });
 
-       // for(Projector projector : projectors){
-        Projector projector = new Projector();
-            projector.generateTimeLine(anchor, 200.0,5001.0);
-            Timeline timeline = projector.getTimeline();
-            projectors[0]=projector;
-            timeline.setCycleCount(Timeline.INDEFINITE);
-            timeline.playFrom(Duration.seconds(4));
-            anchor.setOnDragDetected(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent event) {
-                    slice(event,projector);
-                }
-            });
-      //  }
+            }
+        }));
+        gameTimeLine.setCycleCount(Timeline.INDEFINITE);
+        gameTimeLine.playFrom(Duration.millis(4000));
 
         exit.setOnAction(e -> resumeGame());
         save.setOnAction(e -> saveGame());
     }
 
-    private void slice(MouseEvent event, Projector projector) {
-        anchor.startFullDrag();
-        GameObject gameObject = projector.getGameObject();
-        gameObject.getCanvas().setOnMouseDragEntered(new EventHandler<MouseDragEvent>() {
+    private void slice(Projector projector) {
+        projector.getGameObject().getCanvas().setOnMouseDragEntered(new EventHandler<MouseDragEvent>() {
             @Override
             public void handle(MouseDragEvent event) {
-                gameObject.getCanvas().setDisable(true);
-                gameObject.setSliced(true);
-                Score.setText("Score : " + ++i);
+                projector.getGameObject().getCanvas().setDisable(true);
+                projector.getGameObject().setSliced(true);
+                player.setScore(player.getScore() + 1);
+                Score.setText("Score : " + player.getScore());
                 projector.getPathTransition().stop();
                 projector.fade(anchor);
             }
@@ -116,10 +111,7 @@ public GameController (Player player){
         settings.setDisable(true);
         settings.setVisible(false);
         for (Projector projector : projectors) {
-            Timeline timeline = projector.getTimeline();
-            timeline.playFrom(x);
             projector.getPathTransition().playFrom(y);
-            System.out.println(x);
             System.out.println(y);
         }
     }

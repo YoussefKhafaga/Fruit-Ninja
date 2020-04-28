@@ -5,8 +5,8 @@ public class Player {
   private   int lives ;
     private int score ;
     public Player (){
-        this.lives=lives ;
-        this.score=score ;
+        this.lives=3 ;
+        this.score=0 ;
 
     }
 //    public static Player getP(){
@@ -15,4 +15,20 @@ public class Player {
 // return p;
 //
 //    }
+
+    public int getLives() {
+        return lives;
+    }
+
+    public void setLives(int lives) {
+        this.lives = lives;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
 }

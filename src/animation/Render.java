@@ -1,4 +1,5 @@
 package animation;
+
 import javafx.animation.PathTransition;
 import javafx.scene.canvas.Canvas;
 
@@ -17,15 +18,15 @@ public class Render {
         pathFactory = new PathFactory();
     }
 
-    public GameObject createObject () {
-            Random random = new Random();
-            GameObject gameObject = objectFactory.createObject(random.nextInt(7));
-            return  gameObject;
-        }
+    public GameObject createObject() {
+        Random random = new Random();
+        GameObject gameObject = objectFactory.createObject(random.nextInt(3));
+        return gameObject;
+    }
 
-    public PathTransition generateTransitions (GameObject gameObject , Double duration ){
+    public PathTransition generateTransitions(GameObject gameObject, Double duration) {
         PathFactory randomPath = new PathFactory();
-        PathTransition pathTransition =new PathTransition();
+        PathTransition pathTransition = new PathTransition();
         pathTransition.setPath(randomPath.generatePath());
         Canvas canvas = gameObject.getCanvas();
         canvas.setVisible(true);
@@ -33,8 +34,6 @@ public class Render {
         pathTransition.setDuration(Duration.millis(duration));
         return pathTransition;
     }
-
-
 
 
 }

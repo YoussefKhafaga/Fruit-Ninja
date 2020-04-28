@@ -12,28 +12,25 @@ import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
 
 public class Projector {
-    private Timeline timeline;
     private PathTransition pathTransition;
     private GameObject gameObject;
     private Duration pause;
-    private Level level;
 
-    public Projector() {
-
+    public Projector(Double delay,Double duration) {
+        Render render = new Render();
+        gameObject = render.createObject();
+        pathTransition = render.generateTransitions(gameObject,duration);
+        pathTransition.setDelay(Duration.millis(delay));
+//        anchor.getChildren().addAll(gameObject.getCanvas());
+        pathTransition.setDelay(Duration.millis(delay));
+        pathTransition.play();
+//        pathTransition.setOnFinished(f-> {
+//
+//        });
     }
 
-    public void generateTimeLine(AnchorPane anchor,Double delay,Double duration) {
-        timeline = new Timeline(new KeyFrame(Duration.millis(duration + delay), e -> {
-            Render render = new Render();
-            gameObject = render.createObject();
-            pathTransition = render.generateTransitions(gameObject,duration);
-            pathTransition.setDelay(Duration.millis(delay));
-            anchor.getChildren().addAll(gameObject.getCanvas());
-            pathTransition.play();
-            pathTransition.setOnFinished(f-> {
-                anchor.getChildren().remove(gameObject.getCanvas());
-            });
-        }));
+    public void generateTimeLine() {
+
     }
 
     public void fade(AnchorPane anchorPane) {
@@ -56,14 +53,6 @@ public class Projector {
 
     public void setPause(Duration pause) {
         this.pause = pause;
-    }
-
-    public Timeline getTimeline() {
-        return timeline;
-    }
-
-    public void setTimeline(Timeline timeline) {
-        this.timeline = timeline;
     }
 
     public PathTransition getPathTransition() {
