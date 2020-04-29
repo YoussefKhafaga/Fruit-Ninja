@@ -20,8 +20,8 @@ public class Player {
         return lives;
     }
 
-    public void setLives(int lives) {
-        this.lives = lives;
+    public void decreseLives() {
+        this.lives -= 1;
     }
 
     public int getScore() {

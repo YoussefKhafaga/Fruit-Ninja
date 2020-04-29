@@ -4,7 +4,7 @@ public class Easy implements Level {
     private Double delay;
     private Double duration;
     public Easy(){
-        this.delay = 200.0;
+        this.delay = 400.0;
         this.duration = 5000.0;
     }
     @Override

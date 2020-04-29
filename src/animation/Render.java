@@ -20,7 +20,7 @@ public class Render {
 
     public GameObject createObject() {
         Random random = new Random();
-        GameObject gameObject = objectFactory.createObject(random.nextInt(3));
+        GameObject gameObject = objectFactory.createObject(random.nextInt(7));
         return gameObject;
     }
 

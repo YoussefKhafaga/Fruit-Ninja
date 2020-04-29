@@ -39,11 +39,30 @@ public class PathFactory {
                         -200, 300, 450);
                 break;
             case 3:
+            moveTo.setX(350);
+            moveTo.setY(450);
+            quadCurveTo = new QuadCurveTo(450,
+                    -150, 600, 450);
+            break;
+            case 4:
                 moveTo.setX(350);
                 moveTo.setY(450);
                 quadCurveTo = new QuadCurveTo(450,
                         -150, 600, 450);
                 break;
+            case 5:
+                moveTo.setX(350);
+                moveTo.setY(450);
+                quadCurveTo = new QuadCurveTo(450,
+                        -150, 600, 450);
+                break;
+            case 6:
+                moveTo.setX(350);
+                moveTo.setY(450);
+                quadCurveTo = new QuadCurveTo(450,
+                        -150, 600, 450);
+                break;
+
         }
         path.getElements().addAll(moveTo, quadCurveTo);
         return path;

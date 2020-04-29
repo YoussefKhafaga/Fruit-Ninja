@@ -1,10 +1,8 @@
 package Controller;
 
-import Logic.Fruit;
 import Logic.GameLevels.Level;
 import Logic.GameObject;
 import Logic.Player;
-import Logic.Time;
 import animation.Projector;
 import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
@@ -40,15 +38,26 @@ public class GameController implements Initializable {
     private Button save;
     @FXML
     private HBox settings;
-    private ArrayList<Projector>  projectors =  new ArrayList<>();
+    private ArrayList<Projector> projectors = new ArrayList<>();
     private Timeline gameTimeLine;
     private Duration y;
     private Player player;
     private Level level;
+
     @FXML
-    void keyPressed(KeyEvent event){
-        if(event.equals(KeyCode.ESCAPE)){
-            System.out.println(1234);
+    void keyPressed(KeyEvent event) {
+        System.out.println(1234);
+        settings.setDisable(false);
+        settings.setVisible(true);
+        if (event.getCode().equals(KeyCode.ESCAPE)) {
+            gameTimeLine.stop();
+            y = gameTimeLine.getCurrentTime();
+            for (Projector projector : projectors) {
+                projector.getPathTransition().stop();
+                projector.setPause(projector.getPathTransition().getCurrentTime());
+            }
+            exit.setOnAction(e -> resumeGame());
+            save.setOnAction(e -> saveGame());
         }
     }
 
@@ -56,6 +65,7 @@ public class GameController implements Initializable {
         this.player = player;
         this.level = level;
     }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         anchor.setOnDragDetected(new EventHandler<MouseEvent>() {
@@ -64,14 +74,14 @@ public class GameController implements Initializable {
                 anchor.startFullDrag();
             }
         });
-        gameTimeLine = new Timeline(new KeyFrame(Duration.millis(level.getDuration() + 2* level.getDelay()), e -> {
-            for (int i=0;i<3;i++) {
-                Projector projector = new Projector(i*level.getDelay(), level.getDuration());
+        gameTimeLine = new Timeline(new KeyFrame(Duration.millis(level.getDuration() + 2 * level.getDelay()), e -> {
+            for (int i = 0; i < 3; i++) {
+                Projector projector = new Projector(i * level.getDelay(), level.getDuration());
                 PathTransition pathTransition = projector.getPathTransition();
                 projectors.add(projector);
                 anchor.getChildren().addAll(projector.getGameObject().getCanvas());
                 slice(projector);
-                pathTransition.setOnFinished(f->{
+                pathTransition.setOnFinished(f -> {
                     projectors.remove(projector);
                     anchor.getChildren().remove(projector.getGameObject().getCanvas());
                 });
@@ -80,9 +90,6 @@ public class GameController implements Initializable {
         }));
         gameTimeLine.setCycleCount(Timeline.INDEFINITE);
         gameTimeLine.playFrom(Duration.millis(4000));
-
-        exit.setOnAction(e -> resumeGame());
-        save.setOnAction(e -> saveGame());
     }
 
     private void slice(Projector projector) {
@@ -102,7 +109,8 @@ public class GameController implements Initializable {
     private void checkObject(GameObject gameObject) {
         if (!gameObject.isSliced()) {
             String type = gameObject.getType();
-            if (type.equals("watermelon.png") || type.equals("strawberry.png") || type.equals("Banana.png")) ;
+            if (type.equals("Fruit")||type.equals("SpecialFruit"))
+                player.decreseLives();
         }
 
     }
@@ -110,9 +118,9 @@ public class GameController implements Initializable {
     private void resumeGame() {
         settings.setDisable(true);
         settings.setVisible(false);
+        gameTimeLine.playFrom(y);
         for (Projector projector : projectors) {
-            projector.getPathTransition().playFrom(y);
-            System.out.println(y);
+            projector.getPathTransition().playFrom(projector.getPause());
         }
     }
 
