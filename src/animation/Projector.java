@@ -29,7 +29,7 @@ public class Projector {
 //        });
     }
 
-    public void generateTimeLine() {
+    public Projector() {
 
     }
 
