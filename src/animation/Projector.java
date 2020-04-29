@@ -17,7 +17,7 @@ public class Projector {
     private Duration pause;
 
     public Projector(Double delay,Double duration) {
-        Render render = new Render();
+        Render render =Render.getInstance();
         gameObject = render.createObject();
         pathTransition = render.generateTransitions(gameObject,duration);
         pathTransition.setDelay(Duration.millis(delay));

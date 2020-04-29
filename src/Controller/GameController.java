@@ -110,7 +110,7 @@ public class GameController implements Initializable {
         if (!gameObject.isSliced()) {
             String type = gameObject.getType();
             if (type.equals("Fruit")||type.equals("SpecialFruit"))
-                player.decreseLives();
+                player.decreaseLives();
         }
 
     }

@@ -36,7 +36,7 @@ public class Main extends Application {
 
     }
     public static void main(String[] args) {
-        Render render = new Render();
+        Render render = Render.getInstance();
         GameObject gameObject = new Fruit("watermelon.png","watermelonSliced.png","watermellon") ;
         PathTransition pathTransition = render.generateTransitions(gameObject,5000.0);
         Path x = (Path) pathTransition.getPath();

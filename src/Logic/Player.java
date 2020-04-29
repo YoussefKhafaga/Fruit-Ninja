@@ -20,7 +20,7 @@ public class Player {
         return lives;
     }
 
-    public void decreseLives() {
+    public void decreaseLives() {
         this.lives -= 1;
     }
 

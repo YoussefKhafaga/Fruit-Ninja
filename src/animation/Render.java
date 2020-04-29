@@ -12,12 +12,17 @@ import java.util.Random;
 public class Render {
     private ObjectFactory objectFactory;
     private PathFactory pathFactory;
-
-    public Render() {
+private static Render render=new Render();
+    private Render() {
         objectFactory = new ObjectFactory();
         pathFactory = new PathFactory();
     }
-
+public static Render getInstance(){
+        if (render==null){
+            render=new Render();
+        }
+        return render;
+}
     public GameObject createObject() {
         Random random = new Random();
         GameObject gameObject = objectFactory.createObject(random.nextInt(7));
