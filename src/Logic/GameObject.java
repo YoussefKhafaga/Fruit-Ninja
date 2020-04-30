@@ -1,8 +1,10 @@
 package Logic;
 
+import javafx.animation.Timeline;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.util.Duration;
 
 public  abstract class GameObject {
     private Canvas canvas;
@@ -41,7 +43,8 @@ public  abstract class GameObject {
     }
 
     public abstract String getType();
-    public abstract void scoreincrease();
+
+    public abstract void slice(Model model, Timeline gameTimeLine, Duration duration);
 
 
 }

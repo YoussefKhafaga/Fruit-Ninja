@@ -14,9 +14,9 @@ public class ObjectFactory {
         } else if (num == 4) {
             object = new FatalBomb("fatalbomb.png","boom.png");
         } else if (num == 5) {
-            object = new SpecialFruit1("Banana.png","bananaSliced1.png");
+            object = new FreezingFruit("specialFruit1.png","bananaSliced1.png");
         } else if (num == 6) {
-            object = new SpecialFruit2("watermelon.png","watermelonSliced.png");
+            object = new ComboFruit("specialFruit2.png","watermelonSliced.png");
         }
         return object;
     }
@@ -33,9 +33,9 @@ public class ObjectFactory {
             createObject(3);
         }else if (type.equals("FatalBomb")) {
             createObject(4);
-        }else if (type.equals("SpecialFruit1")) {
+        }else if (type.equals("FreezingFruit")) {
             createObject(5);
-        }else if (type.equals("SpecialFruit2")) {
+        }else if (type.equals("ComboFruit")) {
             createObject(6);
         }return object;
 

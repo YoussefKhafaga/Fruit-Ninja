@@ -2,8 +2,10 @@ package Controller;
 
 import Logic.GameLevels.Level;
 import Logic.GameObject;
+import Logic.Model;
 import Logic.Player;
 import animation.Projector;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
@@ -54,9 +56,9 @@ public class GameController implements Initializable {
     private Duration y;
     private Player player;
     private Level level;
-    Image blade=new Image("cartoon.png");
-Canvas c1=new Canvas(40,40);
-GraphicsContext gc=c1.getGraphicsContext2D();
+    private Image blade=new Image("cartoon.png");
+    private Canvas c1=new Canvas(40,40);
+    private GraphicsContext gc=c1.getGraphicsContext2D();
 
 
     @FXML
@@ -76,9 +78,10 @@ GraphicsContext gc=c1.getGraphicsContext2D();
         }
     }
 
-    public GameController(Player player, Level level) {
+    public GameController(Model model) {
         this.player = player;
         this.level = level;
+        this.projectors = model.getProjectors();
     }
 
     @Override

@@ -3,6 +3,7 @@ import Logic.Fruit;
 import Logic.GameLevels.Easy;
 import Logic.GameLevels.Level;
 import Logic.GameObject;
+import Logic.Model;
 import Logic.Player;
 import animation.Render;
 import javafx.animation.PathTransition;
@@ -23,16 +24,15 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader();
-        Player player = new Player();
+        Model model = new Model();
         Level easyLevel = new Easy();
         loader.setLocation(getClass().getResource("Background.fxml"));
-        GameController gameController = new GameController(player,easyLevel);
+        GameController gameController = new GameController(model);
         loader.setController(gameController);
         AnchorPane root = loader.load();
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();
-        scene.getRoot().requestFocus();
 
     }
     public static void main(String[] args) {
