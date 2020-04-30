@@ -29,6 +29,11 @@ public class Fruit extends GameObject {
         this.setSliced(true);
     }
 
+    @Override
+    public void checkObject(Model model) {
+        if (!isSliced()) model.setLives(model.getLives()-1);
+    }
+
 }
 
 

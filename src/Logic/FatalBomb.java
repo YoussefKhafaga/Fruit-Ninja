@@ -23,4 +23,9 @@ public class FatalBomb extends GameObject{
         this.setSliced(true);
     }
 
+    @Override
+    public void checkObject(Model model) {
+
+    }
+
 }

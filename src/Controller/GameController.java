@@ -101,27 +101,6 @@ public class GameController implements Initializable {
 
     }
 
-    private void slice(Projector projector) {
-        projector.getGameObject().getCanvas().setOnMouseDragEntered(new EventHandler<MouseDragEvent>() {
-            @Override
-            public void handle(MouseDragEvent event) {
-                projector.getGameObject().slice(model,gameTimeLine,y);
-                Score.setText("Score : " + model.getScore());
-                checkLives();
-                projector.getPathTransition().stop();
-                projector.fade(anchor);
-            }
-        });
-    }
-
-    private void checkObject(GameObject gameObject) {
-        if (!gameObject.isSliced()) {
-            String type = gameObject.getType();
-            if (type.equals("Fruit") || type.equals("SpecialFruit")) ;
-        }
-
-    }
-
     private void resumeGame() {
         gameTimeLine.playFrom(y);
         for (Projector projector : projectors) {
@@ -145,6 +124,8 @@ public class GameController implements Initializable {
                     anchor.getChildren().addAll(projector.getGameObject().getCanvas());
                     slice(projector);
                     pathTransition.setOnFinished(f -> {
+                        projector.getGameObject().checkObject(model);
+                        checkLives();
                         projectors.remove(projector);
                         anchor.getChildren().remove(projector.getGameObject().getCanvas());
                     });
@@ -154,9 +135,23 @@ public class GameController implements Initializable {
         gameTimeLine.setCycleCount(Timeline.INDEFINITE);
         gameTimeLine.playFrom(Duration.millis(4000));
     }
+    private void slice(Projector projector) {
+        projector.getGameObject().getCanvas().setOnMouseDragEntered(new EventHandler<MouseDragEvent>() {
+            @Override
+            public void handle(MouseDragEvent event) {
+                model.setProjectors(projectors);
+                projector.getGameObject().slice(model,gameTimeLine,y);
+                Score.setText("Score : " + model.getScore());
+                checkLives();
+                projector.getPathTransition().stop();
+                projector.fade(anchor);
+            }
+        });
+    }
 
     private void endGame() {
         gameTimeLine.stop();
+        timer.getTimeline().stop();
         for (Projector projector : projectors) {
             projector.getPathTransition().stop();
             projector.getGameObject().getCanvas().setDisable(true);

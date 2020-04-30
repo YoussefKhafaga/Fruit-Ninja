@@ -11,6 +11,9 @@ public  abstract class GameObject {
     private boolean isSliced;
     private Image slicedImage;
 
+    public GameObject() {
+    }
+
     public GameObject(String image1 , String image2){
         this.canvas = new Canvas(40,40);
         this.isSliced = false;
@@ -45,6 +48,8 @@ public  abstract class GameObject {
     public abstract String getType();
 
     public abstract void slice(Model model, Timeline gameTimeLine, Duration duration);
+
+    public abstract void checkObject(Model model);
 
 
 }

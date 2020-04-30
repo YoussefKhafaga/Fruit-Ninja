@@ -21,6 +21,8 @@ public class Model {
     }
 
     public Model() {
+        this.lives = 3;
+        this.score = 0;
         this.projectors = new ArrayList<>();
 
     }

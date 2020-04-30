@@ -9,9 +9,10 @@ import javafx.scene.image.Image;
 import javafx.util.Duration;
 
 
-public class FreezingFruit extends  FruitDecorator {
-    public FreezingFruit(String st1, String st2) {
-        super(st1,st2);
+public class FreezingFruit extends FruitDecorator {
+
+    public FreezingFruit(Fruit fruit) {
+        super(fruit);
     }
 
     @Override
@@ -24,21 +25,25 @@ public class FreezingFruit extends  FruitDecorator {
         this.getCanvas().setDisable(true);
         this.setSliced(true);
         duration = gameTimeLine.getCurrentTime();
-        Timeline freeze = new Timeline(new KeyFrame(Duration.seconds(3.0),e->{
-            gameTimeLine.pause();
+        gameTimeLine.pause();
         for (Projector projector : model.getProjectors()) {
-            projector.getPathTransition().stop();
+            projector.getPathTransition().pause();
             projector.setPause(projector.getPathTransition().getCurrentTime());
         }
-        }));
+        Timeline freeze = new Timeline(new KeyFrame(Duration.seconds(3.0), e ->{}));
         freeze.play();
         Duration finalDuration = duration;
-        freeze.setOnFinished(e->{
+        freeze.setOnFinished(e -> {
             gameTimeLine.playFrom(finalDuration);
             for (Projector projector : model.getProjectors()) {
                 projector.getPathTransition().playFrom(projector.getPause());
             }
         });
 
+    }
+
+    @Override
+    public void checkObject(Model model) {
+        this.fruit.checkObject(model);
     }
 }
