@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 import javafx.util.Duration;
 
 public class ComboFruit extends FruitDecorator{
-
     public ComboFruit(String st1 , String st2) {
         super(st1,st2);
     }
@@ -20,6 +19,8 @@ public class ComboFruit extends FruitDecorator{
     @Override
     public void slice(Model model, Timeline gameTimeLine, Duration duration) {
         model.setScore(model.getScore()+10);
+        this.getCanvas().setDisable(true);
+        this.setSliced(true);
     }
 }
 

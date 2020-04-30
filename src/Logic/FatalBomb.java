@@ -7,8 +7,6 @@ import javafx.scene.image.Image;
 import javafx.util.Duration;
 
 public class FatalBomb extends GameObject{
-    private Image slicedImage;
-Player p=new Player();
     public FatalBomb(String st1,String st2) {
         super(st1,st2);
     }
@@ -21,11 +19,8 @@ Player p=new Player();
     @Override
     public void slice(Model model, Timeline gameTimeLine, Duration duration) {
         model.setLives(model.getLives()-3);
+        this.getCanvas().setDisable(true);
+        this.setSliced(true);
     }
 
-    public void scoreincrease(){
-        if (isSliced()){
-            p.decreaseLives();
-        }
-}
 }

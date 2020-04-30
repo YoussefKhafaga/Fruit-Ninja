@@ -1,5 +1,6 @@
 package Controller;
 
+import Logic.GameLevels.Easy;
 import Logic.GameLevels.Level;
 import Logic.GameObject;
 import Logic.Model;
@@ -83,6 +84,7 @@ public class GameController implements Initializable {
 
     public GameController(Model model) {
         this.projectors = model.getProjectors();
+        this.level = new Easy();
     }
 
     @Override
@@ -103,10 +105,9 @@ public class GameController implements Initializable {
         projector.getGameObject().getCanvas().setOnMouseDragEntered(new EventHandler<MouseDragEvent>() {
             @Override
             public void handle(MouseDragEvent event) {
-                projector.getGameObject().getCanvas().setDisable(true);
-                projector.getGameObject().setSliced(true);
-                model.setScore(model.getScore() + 1);
+                projector.getGameObject().slice(model,gameTimeLine,y);
                 Score.setText("Score : " + model.getScore());
+                checkLives();
                 projector.getPathTransition().stop();
                 projector.fade(anchor);
             }
@@ -158,6 +159,9 @@ public class GameController implements Initializable {
         gameTimeLine.stop();
         for (Projector projector : projectors) {
             projector.getPathTransition().stop();
+            projector.getGameObject().getCanvas().setDisable(true);
+            projector.getGameObject().getCanvas().setVisible(false);
+
         }
         gameOver.setVisible(true);
         life3.setVisible(true);
@@ -178,7 +182,7 @@ public class GameController implements Initializable {
         else if (model.getLives() == 2) life1.setVisible(false);
         else if (model.getLives() == 1) life2.setVisible(false);
         else if (model.getLives() == 0) life3.setVisible(false);
-        else endGame();
+        else if (model.getLives()<0) endGame();
     }
 
     private void loadGame() {

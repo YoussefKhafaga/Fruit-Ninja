@@ -21,6 +21,7 @@ public class Model {
     }
 
     public Model() {
+        this.projectors = new ArrayList<>();
 
     }
 

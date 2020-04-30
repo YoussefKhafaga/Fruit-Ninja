@@ -7,10 +7,6 @@ import javafx.scene.image.Image;
 import javafx.util.Duration;
 
 public class DangerousBomb extends GameObject{
-    private boolean isSliced;
-    Player p=new Player();
-
-
     public DangerousBomb(String st1,String st2) {
         super(st1,st2);
     }
@@ -23,6 +19,8 @@ public class DangerousBomb extends GameObject{
     @Override
     public void slice(Model model, Timeline gameTimeLine, Duration duration) {
         model.setLives(model.getLives()-1);
+        this.getCanvas().setDisable(true);
+        this.setSliced(true);
     }
 
 }

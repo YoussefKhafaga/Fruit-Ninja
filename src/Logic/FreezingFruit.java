@@ -21,6 +21,8 @@ public class FreezingFruit extends  FruitDecorator {
 
     @Override
     public void slice(Model model, Timeline gameTimeLine, Duration duration) {
+        this.getCanvas().setDisable(true);
+        this.setSliced(true);
         duration = gameTimeLine.getCurrentTime();
         Timeline freeze = new Timeline(new KeyFrame(Duration.seconds(3.0),e->{
             gameTimeLine.pause();

@@ -25,6 +25,8 @@ public class Fruit extends GameObject {
     @Override
     public void slice(Model model, Timeline gameTimeLine, Duration duration) {
         model.setScore(model.getScore()+1);
+        this.getCanvas().setDisable(true);
+        this.setSliced(true);
     }
 
 }
