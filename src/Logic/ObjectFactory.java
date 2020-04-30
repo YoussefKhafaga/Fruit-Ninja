@@ -14,10 +14,10 @@ public class ObjectFactory {
         } else if (num == 4) {
             object = new FatalBomb("fatalbomb.png","boom.png");
         } else if (num == 5) {
-            Fruit fruit = new Fruit("specialFruit1.png","bananaSliced1.png",null);
+            Fruit fruit = new Fruit("specialFruit1.png","freeze.png",null);
             object = new FreezingFruit(fruit);
         } else if (num == 6) {
-            Fruit fruit = new Fruit("specialFruit2.png","watermelonSliced.png",null);
+            Fruit fruit = new Fruit("specialFruit2.png","combo.png",null);
             object = new ComboFruit(fruit);
         }
         return object;

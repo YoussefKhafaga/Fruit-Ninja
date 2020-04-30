@@ -14,6 +14,11 @@
             <Image url="@background.jpg" />
          </image>
       </ImageView>
+      <ImageView fx:id="freeze" fitHeight="388.0" fitWidth="626.0" pickOnBounds="true" visible="false">
+         <image>
+            <Image url="@freezy.png" />
+         </image>
+      </ImageView>
       <Label fx:id="timerLabel" layoutX="524.0" layoutY="43.0" prefHeight="46.0" prefWidth="91.0" text="00:00" textFill="#f8f7f7">
          <font>
             <Font name="System Bold" size="20.0" />

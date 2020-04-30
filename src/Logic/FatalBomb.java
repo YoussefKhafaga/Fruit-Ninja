@@ -18,7 +18,7 @@ public class FatalBomb extends GameObject{
 
     @Override
     public void slice(Model model, Timeline gameTimeLine, Duration duration) {
-        model.setLives(model.getLives()-3);
+        model.setLives(model.getLives()-4);
         this.getCanvas().setDisable(true);
         this.setSliced(true);
     }
