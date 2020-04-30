@@ -2,8 +2,9 @@ package Controller;
 
 import Logic.GameLevels.Level;
 import Logic.GameObject;
-import Logic.Player;
+import Logic.Model;
 import animation.Projector;
+import animation.Timer;
 import javafx.animation.KeyFrame;
 import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
@@ -12,43 +13,48 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
 import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 
 public class GameController implements Initializable {
     @FXML
-    private AnchorPane anchorPane;
+    private ImageView life1;
+    @FXML
+    private ImageView life2;
+    @FXML
+    private ImageView life3;
+    @FXML
+    private ImageView gameOver;
+    @FXML
+    private Label timerLabel;
     @FXML
     private AnchorPane anchor;
     @FXML
+    private AnchorPane anchorPane;
+    @FXML
     private Label Score;
     @FXML
-    private Button exit;
-    @FXML
     private Button save;
-    @FXML
-    private HBox settings;
     private ArrayList<Projector> projectors = new ArrayList<>();
     private Timeline gameTimeLine;
     private Duration y;
-    private Player player;
     private Level level;
+    private Timer timer;
+    private Model model = new Model();
 
     @FXML
     void keyPressed(KeyEvent event) {
-        System.out.println(1234);
-        settings.setDisable(false);
-        settings.setVisible(true);
         if (event.getCode().equals(KeyCode.ESCAPE)) {
             gameTimeLine.stop();
             y = gameTimeLine.getCurrentTime();
@@ -56,13 +62,11 @@ public class GameController implements Initializable {
                 projector.getPathTransition().stop();
                 projector.setPause(projector.getPathTransition().getCurrentTime());
             }
-            exit.setOnAction(e -> resumeGame());
             save.setOnAction(e -> saveGame());
         }
     }
 
-    public GameController(Player player, Level level) {
-        this.player = player;
+    public GameController(Level level) {
         this.level = level;
     }
 
@@ -75,6 +79,7 @@ public class GameController implements Initializable {
             }
         });
         startGame();
+        startTimer();
 
     }
 
@@ -84,8 +89,8 @@ public class GameController implements Initializable {
             public void handle(MouseDragEvent event) {
                 projector.getGameObject().getCanvas().setDisable(true);
                 projector.getGameObject().setSliced(true);
-                player.setScore(player.getScore() + 1);
-                Score.setText("Score : " + player.getScore());
+                model.setScore(model.getScore() + 1);
+                Score.setText("Score : " + model.getScore());
                 projector.getPathTransition().stop();
                 projector.fade(anchor);
             }
@@ -95,15 +100,12 @@ public class GameController implements Initializable {
     private void checkObject(GameObject gameObject) {
         if (!gameObject.isSliced()) {
             String type = gameObject.getType();
-            if (type.equals("Fruit")||type.equals("SpecialFruit"))
-                player.decreaseLives();
+            if (type.equals("Fruit") || type.equals("SpecialFruit")) ;
         }
 
     }
 
     private void resumeGame() {
-        settings.setDisable(true);
-        settings.setVisible(false);
         gameTimeLine.playFrom(y);
         for (Projector projector : projectors) {
             projector.getPathTransition().playFrom(projector.getPause());
@@ -113,23 +115,57 @@ public class GameController implements Initializable {
     private void saveGame() {
 
     }
-    private void startGame(){
-        gameTimeLine = new Timeline(new KeyFrame(Duration.millis(level.getDuration() + 2 * level.getDelay()), e -> {
-            for (int i = 0; i < 3; i++) {
-                Projector projector = new Projector(i * level.getDelay(), level.getDuration());
-                PathTransition pathTransition = projector.getPathTransition();
-                projectors.add(projector);
-                anchor.getChildren().addAll(projector.getGameObject().getCanvas());
-                slice(projector);
-                pathTransition.setOnFinished(f -> {
-                    projectors.remove(projector);
-                    anchor.getChildren().remove(projector.getGameObject().getCanvas());
-                });
 
+    private void startGame() {
+        gameTimeLine = new Timeline(new KeyFrame(Duration.millis(level.getDuration() + 2 * level.getDelay()), e -> {
+            for (int i = 0; i < 4; i++) {
+                Random random = new Random();
+                int x = random.nextInt(5);
+                if (x<4) {
+                    Projector projector = new Projector(i * level.getDelay(), level.getDuration());
+                    PathTransition pathTransition = projector.getPathTransition();
+                    projectors.add(projector);
+                    anchor.getChildren().addAll(projector.getGameObject().getCanvas());
+                    slice(projector);
+                    pathTransition.setOnFinished(f -> {
+                        projectors.remove(projector);
+                        anchor.getChildren().remove(projector.getGameObject().getCanvas());
+                    });
+                }
             }
         }));
         gameTimeLine.setCycleCount(Timeline.INDEFINITE);
         gameTimeLine.playFrom(Duration.millis(4000));
+    }
+
+    private void endGame() {
+        gameTimeLine.stop();
+        for (Projector projector : projectors) {
+            projector.getPathTransition().stop();
+        }
+        gameOver.setVisible(true);
+        life3.setVisible(true);
+        life2.setVisible(true);
+        life1.setVisible(true);
+    }
+
+    private void startTimer() {
+        timer = new Timer(timerLabel);
+        timer.startCountDown();
+        timer.getTimeline().setOnFinished(e -> {
+            endGame();
+        });
+    }
+
+    private void checkLives() {
+        if (model.getLives() == 3) ;
+        else if (model.getLives() == 2) life1.setVisible(false);
+        else if (model.getLives() == 1) life2.setVisible(false);
+        else if (model.getLives() == 0) life3.setVisible(false);
+        else endGame();
+    }
+
+    private void loadGame() {
 
     }
 

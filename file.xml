@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<game>
+    <highScore>50</highScore>
+    <model>
+        <projector>
+            <pause>1500.0 ms</pause>
+            <Duration>5000.0 ms</Duration>
+            <Delay>400.0 ms</Delay>
+            <type>watermellon</type>
+            <moveX>600.0</moveX>
+            <moveY>450.0</moveY>
+            <controlX>350.0</controlX>
+            <controlY>-400.0</controlY>
+            <x>100.0</x>
+            <y>450.0</y>
+        </projector>
+        <projector>
+            <pause>2000.0 ms</pause>
+            <Duration>6000.0 ms</Duration>
+            <Delay>400.0 ms</Delay>
+            <type>strawberry</type>
+            <moveX>350.0</moveX>
+            <moveY>450.0</moveY>
+            <controlX>350.0</controlX>
+            <controlY>-400.0</controlY>
+            <x>600.0</x>
+            <y>450.0</y>
+        </projector>
+        <score>4</score>
+        <lives>3</lives>
+    </model>
+</game>
