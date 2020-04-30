@@ -41,5 +41,7 @@ public  abstract class GameObject {
     }
 
     public abstract String getType();
+    public abstract void scoreincrease();
+
 
 }

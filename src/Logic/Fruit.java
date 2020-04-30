@@ -8,9 +8,10 @@ import java.util.Random;
 
 public class Fruit extends GameObject {
     private String name;
+    Player p = new Player();
 
-    public Fruit(String image1 , String image2,String name) {
-        super(image1,image2);
+    public Fruit(String image1, String image2, String name) {
+        super(image1, image2);
         this.name = name;
     }
 
@@ -19,8 +20,18 @@ public class Fruit extends GameObject {
     }
 
     @Override
-        public String getType () {
-            return "Fruit";
-        }
-
+    public String getType() {
+        return "Fruit";
     }
+
+
+    public void scoreincrease() {
+        if (isSliced()) {
+            p.setScore(p.getScore() + 1);
+
+        }
+    }
+}
+
+
+

@@ -6,7 +6,7 @@ import javafx.scene.image.Image;
 
 public class FatalBomb extends GameObject{
     private Image slicedImage;
-
+Player p=new Player();
     public FatalBomb(String st1,String st2) {
         super(st1,st2);
     }
@@ -15,5 +15,9 @@ public class FatalBomb extends GameObject{
     public String getType() {
         return "FatalBomb";
     }
-
+public void scoreincrease(){
+        if (isSliced()){
+            p.decreaseLives();
+        }
+}
 }

@@ -6,6 +6,7 @@ import javafx.scene.image.Image;
 
 public class DangerousBomb extends GameObject{
     private boolean isSliced;
+    Player p=new Player();
 
 
     public DangerousBomb(String st1,String st2) {
@@ -17,4 +18,10 @@ public class DangerousBomb extends GameObject{
         return "DangerousBomb";
     }
 
+    @Override
+    public void scoreincrease() {
+        if (isSliced()){
+            p.decreaseLives();
+        }
+    }
 }

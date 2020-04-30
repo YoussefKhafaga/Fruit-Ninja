@@ -2,7 +2,7 @@ package Logic;
 
 public class ObjectFactory {
     public GameObject createObject(int num) {
-        GameObject object;
+        GameObject object ;
         if (num == 0) {
             object = new Fruit("watermelon.png", "watermelonSliced.png","watermellon");
         }else if (num == 1) {
