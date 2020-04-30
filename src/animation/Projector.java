@@ -21,15 +21,11 @@ public class Projector {
         gameObject = render.createObject();
         pathTransition = render.generateTransitions(gameObject,duration);
         pathTransition.setDelay(Duration.millis(delay));
-//        anchor.getChildren().addAll(gameObject.getCanvas());
         pathTransition.setDelay(Duration.millis(delay));
         pathTransition.play();
-//        pathTransition.setOnFinished(f-> {
-//
-//        });
     }
 
-    public void generateTimeLine() {
+    public Projector() {
 
     }
 

@@ -90,22 +90,8 @@ GraphicsContext gc=c1.getGraphicsContext2D();
                 anchor.startFullDrag();
             }
         });
-        gameTimeLine = new Timeline(new KeyFrame(Duration.millis(level.getDuration() + 2 * level.getDelay()), e -> {
-            for (int i = 0; i < 3; i++) {
-                Projector projector = new Projector(i * level.getDelay(), level.getDuration());
-                PathTransition pathTransition = projector.getPathTransition();
-                projectors.add(projector);
-                anchor.getChildren().addAll(projector.getGameObject().getCanvas());
-                slice(projector);
-                pathTransition.setOnFinished(f -> {
-                    projectors.remove(projector);
-                    anchor.getChildren().remove(projector.getGameObject().getCanvas());
-                });
+        startGame();
 
-            }
-        }));
-        gameTimeLine.setCycleCount(Timeline.INDEFINITE);
-        gameTimeLine.playFrom(Duration.millis(4000));
     }
 
     private void slice(Projector projector) {
@@ -141,6 +127,25 @@ GraphicsContext gc=c1.getGraphicsContext2D();
     }
 
     private void saveGame() {
+
+    }
+    private void startGame(){
+        gameTimeLine = new Timeline(new KeyFrame(Duration.millis(level.getDuration() + 2 * level.getDelay()), e -> {
+            for (int i = 0; i < 3; i++) {
+                Projector projector = new Projector(i * level.getDelay(), level.getDuration());
+                PathTransition pathTransition = projector.getPathTransition();
+                projectors.add(projector);
+                anchor.getChildren().addAll(projector.getGameObject().getCanvas());
+                slice(projector);
+                pathTransition.setOnFinished(f -> {
+                    projectors.remove(projector);
+                    anchor.getChildren().remove(projector.getGameObject().getCanvas());
+                });
+
+            }
+        }));
+        gameTimeLine.setCycleCount(Timeline.INDEFINITE);
+        gameTimeLine.playFrom(Duration.millis(4000));
 
     }
 

@@ -9,12 +9,6 @@ public class Player {
         this.score=0 ;
 
     }
-//    public static Player getP(){
-// if (p==null)
-// p=new Player();
-// return p;
-//
-//    }
 
     public int getLives() {
         return lives;
