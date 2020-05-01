@@ -1,6 +1,6 @@
 package Logic.GameLevels;
 
-public class Easy implements Level {
+public class Easy implements LevelState {
     private Double delay;
     private Double duration;
     public Easy(){

@@ -1,6 +1,6 @@
 package Controller;
 
-import Logic.GameLevels.Easy;
+import Logic.GameLevels.LevelState;
 import Logic.GameLevels.Level;
 import Logic.Model;
 import animation.Projector;
@@ -57,6 +57,11 @@ public class GameController implements Initializable {
     private Timeline gameTimeLine;
     private Duration y;
     private Level level;
+    private LevelState levelState;
+    private Level l ;
+    private Image blade = new Image("cartoon.png");
+    private Canvas c1 = new Canvas(40, 40);
+    private GraphicsContext gc = c1.getGraphicsContext2D();
     private Timer timer;
     private Model model;
 
@@ -75,9 +80,10 @@ public class GameController implements Initializable {
 
     public GameController(Model model, String mode) {
         this.projectors = model.getProjectors();
-        this.level = new Easy();
         this.mode = mode;
+        this.l=new Level(model.getScore());
         this.model = model;
+        
     }
 
     @Override
@@ -147,6 +153,7 @@ public class GameController implements Initializable {
                 model.setProjectors(projectors);
                 projector.getGameObject().slice(model, gameTimeLine, y);
                 Score.setText("Score : " + model.getScore());
+                l.setLevelState(model.getScore());
                 checkLives();
                 projector.getPathTransition().stop();
                 projector.fade(anchor);
@@ -196,7 +203,7 @@ public class GameController implements Initializable {
         Score.setText("" + model.getScore());
         checkLives();
         projectors = this.model.getProjectors();
-        Timeline load = new Timeline(new KeyFrame(Duration.millis(level.getDuration() + 3 * level.getDelay()), e -> {
+        Timeline load = new Timeline(new KeyFrame(Duration.seconds(levelState.getDuration() + 3* levelState.getDelay()), e ->{
             for (Projector projector : projectors) {
                 anchor.getChildren().add(projector.getGameObject().getCanvas());
                 projector.getPathTransition().playFrom(projector.getPause());

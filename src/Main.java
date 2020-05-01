@@ -1,7 +1,7 @@
 import Controller.GameController;
 import Logic.FileAccess.FileRead;
 import Logic.GameLevels.Easy;
-import Logic.GameLevels.Level;
+import Logic.GameLevels.LevelState;
 import Logic.Model;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

@@ -1,8 +1,12 @@
 package Logic.GameLevels;
 
-public class Normal implements Level {
+public class Normal implements LevelState {
     private Double delay;
     private Double duration;
+    public Normal(){
+        this.delay=300.00;
+        this.duration=3500.00;
+    }
     @Override
     public Double getDelay() {
         return this.delay;
