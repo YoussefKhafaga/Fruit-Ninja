@@ -80,6 +80,7 @@ public class GameController implements Initializable {
         this.projectors = model.getProjectors();
         this.l=new Level(model.getScore());
         this.model = model;
+        
     }
 
     @Override
