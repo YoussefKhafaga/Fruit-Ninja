@@ -19,13 +19,4 @@ public class Hard implements LevelState {
         return this.duration;
     }
 
-    @Override
-    public void setDelay(Double decrease) {
-
-    }
-
-    @Override
-    public void setDuration(Double decrease) {
-
-    }
 }

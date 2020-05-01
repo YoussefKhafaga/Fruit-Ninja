@@ -83,6 +83,8 @@ public class GameController implements Initializable {
             save.setDisable(true);
             startGame();
         } else if (mode.equals("Classic")) {
+            int highScore = 50;
+            timerLabel.setText("HighScore:"+ highScore);
             startGame();
         }else if (mode.equals("Load")){
             loadGame();
@@ -132,7 +134,7 @@ public class GameController implements Initializable {
                 projector.getGameObject().slice(model, gameTimeLine, y);
                 Score.setText("Score : " + model.getScore());
                 level.setLevelState(model.getScore());
-                checkLives();
+                if(!mode.equals("Arcade")) checkLives();
                 projector.getPathTransition().stop();
                 projector.fade(anchor);
                 projectors.remove(projector);
@@ -142,7 +144,7 @@ public class GameController implements Initializable {
 
     private void endGame() {
         gameTimeLine.stop();
-        timer.getTimeline().stop();
+        if(mode.equals("Arcade"))timer.getTimeline().stop();
         for (Projector projector : projectors) {
             projector.getPathTransition().stop();
             projector.getGameObject().getCanvas().setDisable(true);
@@ -164,9 +166,7 @@ public class GameController implements Initializable {
     }
 
     private void checkLives() {
-        if (model.getLives() == 3) {
-
-        } else if (model.getLives() == 2) {
+        if (model.getLives() == 2) {
             life1.setVisible(false);
         } else if (model.getLives() == 1) {
             life2.setVisible(false);

@@ -23,7 +23,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
 
-public class FileRead {
+public  class FileRead {
     private static DocumentBuilderFactory dbfact = DocumentBuilderFactory.newInstance();
     private static DocumentBuilder dbuild;
     static Document doc;

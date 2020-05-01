@@ -1,10 +1,7 @@
 package animation;
-
-import javafx.animation.PathTransition;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
 import javafx.scene.shape.QuadCurveTo;
-import javafx.util.Duration;
 
 import java.util.Random;
 
