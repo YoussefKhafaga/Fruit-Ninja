@@ -17,13 +17,4 @@ public class Normal implements LevelState {
         return this.duration;
     }
 
-    @Override
-    public void setDelay(Double delay) {
-
-    }
-
-    @Override
-    public void setDuration(Double duration) {
-
-    }
 }

@@ -9,9 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.text.ParseException;
-
-
 public class Main extends Application {
     public static FileRead fileRead = new FileRead("file.xml");
     public static int highScore =  fileRead.getHighScore();

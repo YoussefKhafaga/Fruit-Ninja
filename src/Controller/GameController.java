@@ -1,6 +1,5 @@
 package Controller;
 
-import Logic.GameLevels.LevelState;
 import Logic.GameLevels.Level;
 import Logic.Model;
 import animation.Projector;
@@ -18,8 +17,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -57,33 +54,14 @@ public class GameController implements Initializable {
     private Timeline gameTimeLine;
     private Duration y;
     private Level level;
-    private LevelState levelState;
-    private Level l ;
-    private Image blade = new Image("cartoon.png");
-    private Canvas c1 = new Canvas(40, 40);
-    private GraphicsContext gc = c1.getGraphicsContext2D();
     private Timer timer;
     private Model model;
-
-    @FXML
-    void keyPressed(KeyEvent event) {
-        if (event.getCode().equals(KeyCode.ESCAPE)) {
-            gameTimeLine.stop();
-            y = gameTimeLine.getCurrentTime();
-            for (Projector projector : projectors) {
-                projector.getPathTransition().stop();
-                projector.setPause(projector.getPathTransition().getCurrentTime());
-            }
-            save.setOnAction(e -> saveGame());
-        }
-    }
 
     public GameController(Model model, String mode) {
         this.projectors = model.getProjectors();
         this.mode = mode;
-        this.l=new Level(model.getScore());
+        this.level =new Level(model.getScore());
         this.model = model;
-        
     }
 
     @Override
@@ -153,7 +131,7 @@ public class GameController implements Initializable {
                 model.setProjectors(projectors);
                 projector.getGameObject().slice(model, gameTimeLine, y);
                 Score.setText("Score : " + model.getScore());
-                l.setLevelState(model.getScore());
+                level.setLevelState(model.getScore());
                 checkLives();
                 projector.getPathTransition().stop();
                 projector.fade(anchor);
@@ -203,7 +181,7 @@ public class GameController implements Initializable {
         Score.setText("" + model.getScore());
         checkLives();
         projectors = this.model.getProjectors();
-        Timeline load = new Timeline(new KeyFrame(Duration.seconds(levelState.getDuration() + 3* levelState.getDelay()), e ->{
+        Timeline load = new Timeline(new KeyFrame(Duration.seconds(level.getDuration() + 3* level.getDelay()), e ->{
             for (Projector projector : projectors) {
                 anchor.getChildren().add(projector.getGameObject().getCanvas());
                 projector.getPathTransition().playFrom(projector.getPause());
