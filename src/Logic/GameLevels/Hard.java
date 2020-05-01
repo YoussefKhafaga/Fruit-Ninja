@@ -1,6 +1,6 @@
 package Logic.GameLevels;
 
-public class Hard implements Level {
+public class Hard implements LevelState {
     private Double delay;
     private Double duration;
 

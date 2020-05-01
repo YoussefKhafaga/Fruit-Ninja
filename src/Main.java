@@ -1,6 +1,6 @@
 import Controller.GameController;
 import Logic.GameLevels.Easy;
-import Logic.GameLevels.Level;
+import Logic.GameLevels.LevelState;
 import Logic.Model;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +16,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader();
         Model model = new Model();
-        Level easyLevel = new Easy();
+        LevelState easyLevelState = new Easy();
         loader.setLocation(getClass().getResource("Background.fxml"));
         GameController gameController = new GameController(model);
         loader.setController(gameController);

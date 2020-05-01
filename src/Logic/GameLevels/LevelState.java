@@ -1,9 +1,9 @@
 package Logic.GameLevels;
 
-import Logic.Model;
-
-public class LevelState {
-    private Level level;
-    private Model model;
+public interface LevelState {
+     Double getDelay();
+     Double getDuration();
+     void setDelay(Double delay);
+     void setDuration(Double duration);
 
 }
