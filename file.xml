@@ -3,11 +3,11 @@
     <highScore>50</highScore>
     <model>
         <projector>
-            <pause>1500.0 ms</pause>
-            <Duration>5000.0 ms</Duration>
+            <pause>500.0 ms</pause>
+            <Duration>4000.0 ms</Duration>
             <Delay>400.0 ms</Delay>
-            <type>watermellon</type>
-            <moveX>600.0</moveX>
+            <type>watermelon</type>
+            <moveX>350.0</moveX>
             <moveY>450.0</moveY>
             <controlX>350.0</controlX>
             <controlY>-400.0</controlY>

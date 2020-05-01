@@ -52,13 +52,11 @@ public class GameController implements Initializable {
     private Label Score;
     @FXML
     private Button save;
+    private String mode;
     private ArrayList<Projector> projectors;
     private Timeline gameTimeLine;
     private Duration y;
     private Level level;
-    private Image blade = new Image("cartoon.png");
-    private Canvas c1 = new Canvas(40, 40);
-    private GraphicsContext gc = c1.getGraphicsContext2D();
     private Timer timer;
     private Model model;
 
@@ -75,14 +73,16 @@ public class GameController implements Initializable {
         }
     }
 
-    public GameController(Model model) {
+    public GameController(Model model, String mode) {
         this.projectors = model.getProjectors();
         this.level = new Easy();
+        this.mode = mode;
         this.model = model;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Image blade = new Image("cartoon.png");
         anchor.setCursor(new ImageCursor(blade, 20, 20));
         anchor.setOnDragDetected(new EventHandler<MouseEvent>() {
             @Override
@@ -90,9 +90,19 @@ public class GameController implements Initializable {
                 anchor.startFullDrag();
             }
         });
-        startGame();
-        startTimer();
-
+        if (mode.equals("Arcade")) {
+            startTimer();
+            life3.setVisible(false);
+            life2.setVisible(false);
+            life1.setVisible(false);
+            save.setVisible(false);
+            save.setDisable(true);
+            startGame();
+        } else if (mode.equals("Classic")) {
+            startGame();
+        }else if (mode.equals("Load")){
+            loadGame();
+        }
     }
 
     private void saveGame() {
@@ -100,19 +110,19 @@ public class GameController implements Initializable {
     }
 
     private void startGame() {
-        gameTimeLine = new Timeline(new KeyFrame(Duration.millis(level.getDuration() + 3* level.getDelay()), e -> {
+        gameTimeLine = new Timeline(new KeyFrame(Duration.millis(level.getDuration() + 3 * level.getDelay()), e -> {
             for (int i = 0; i < 4; i++) {
                 Random random = new Random();
-                int x = random.nextInt(5);
-                if (x < 4) {
-                    Projector projector = new Projector(i * level.getDelay(), level.getDuration());
+                int x = random.nextInt(10);
+                if (x < 8) {
+                    Projector projector = new Projector(i * level.getDelay(), level.getDuration(),mode);
                     PathTransition pathTransition = projector.getPathTransition();
                     projectors.add(projector);
                     anchor.getChildren().addAll(projector.getGameObject().getCanvas());
                     slice(projector);
                     pathTransition.setOnFinished(f -> {
                         projector.getGameObject().checkObject(model);
-                        checkLives();
+                        if(!mode.equals("Arcade")) checkLives();
                         projectors.remove(projector);
                         anchor.getChildren().remove(projector.getGameObject().getCanvas());
                     });
@@ -127,12 +137,12 @@ public class GameController implements Initializable {
         projector.getGameObject().getCanvas().setOnMouseDragEntered(new EventHandler<MouseDragEvent>() {
             @Override
             public void handle(MouseDragEvent event) {
-                if(projector.getGameObject().getType().equals("FreezingFruit")){
+                if (projector.getGameObject().getType().equals("FreezingFruit")) {
                     freeze.setVisible(true);
-                    Timeline freezeTimeLine = new Timeline(new KeyFrame(Duration.seconds(3.0), e ->{
+                    Timeline freezeTimeLine = new Timeline(new KeyFrame(Duration.seconds(3.0), e -> {
                     }));
                     freezeTimeLine.play();
-                    freezeTimeLine.setOnFinished(e-> freeze.setVisible(false));
+                    freezeTimeLine.setOnFinished(e -> freeze.setVisible(false));
                 }
                 model.setProjectors(projectors);
                 projector.getGameObject().slice(model, gameTimeLine, y);
@@ -186,9 +196,9 @@ public class GameController implements Initializable {
         Score.setText("" + model.getScore());
         checkLives();
         projectors = this.model.getProjectors();
-        Timeline load = new Timeline(new KeyFrame(Duration.seconds(level.getDuration() + 3* level.getDelay()), e ->{
-            for (int i = 0; i < projectors.size(); i++) {
-                Projector projector = projectors.get(i);
+        Timeline load = new Timeline(new KeyFrame(Duration.millis(level.getDuration() + 3 * level.getDelay()), e -> {
+            for (Projector projector : projectors) {
+                anchor.getChildren().add(projector.getGameObject().getCanvas());
                 projector.getPathTransition().playFrom(projector.getPause());
                 slice(projector);
                 projector.getPathTransition().setOnFinished(me -> {
@@ -196,8 +206,10 @@ public class GameController implements Initializable {
                 });
             }
         }));
-        load.play();
-        load.setOnFinished(e->{
+        load.setCycleCount(2);
+        load.playFrom(Duration.millis(level.getDuration() + 3 * level.getDelay()));
+        load.setOnFinished(e -> {
+            projectors = new ArrayList<>();
             startGame();
         });
 

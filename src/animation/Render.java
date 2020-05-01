@@ -4,8 +4,8 @@ import javafx.animation.PathTransition;
 import javafx.scene.canvas.Canvas;
 
 import javafx.util.Duration;
-import Logic.GameObject;
-import Logic.ObjectFactory;
+import Logic.GameObjects.GameObject;
+import Logic.GameObjects.ObjectFactory;
 
 import java.util.Random;
 
@@ -26,9 +26,15 @@ public class Render {
         return render;
     }
 
-    public GameObject createObject() {
+    public GameObject createObject(String mode) {
+        int x ;
         Random random = new Random();
-        GameObject gameObject = objectFactory.createObject(random.nextInt(11)%7);
+        if(mode.equals("Arcade")){
+            x = random.nextInt(3);
+        }else {
+            x = random.nextInt(11)%7;
+        }
+        GameObject gameObject = objectFactory.createObject(x);
         return gameObject;
     }
 

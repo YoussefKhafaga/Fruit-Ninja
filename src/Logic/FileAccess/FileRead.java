@@ -1,7 +1,8 @@
 package Logic.FileAccess;
 
+import Logic.GameObjects.GameObject;
 import Logic.Model;
-import Logic.ObjectFactory;
+import Logic.GameObjects.ObjectFactory;
 import animation.Projector;
 import javafx.animation.PathTransition;
 import javafx.scene.shape.MoveTo;
@@ -66,8 +67,10 @@ public class FileRead {
                     projector.setPathTransition(createPathTransition(pElement));
                     String a = pElement.getElementsByTagName("type").item(0).getTextContent();
                     Double b = Double.parseDouble(pElement.getElementsByTagName("pause").
-                            item(0).getTextContent().replaceAll("[^0-9]", ""));
-                    projector.setGameObject(objectFactory.createObject(a));
+                            item(0).getTextContent().split(" ")[0]);
+                    GameObject gameObject = objectFactory.createObject(a);
+                    projector.getPathTransition().setNode(gameObject.getCanvas());
+                    projector.setGameObject(gameObject);
                     projector.setPause(Duration.millis(b));
                     projectors.add(projector);
                 }
@@ -90,10 +93,10 @@ public class FileRead {
         Double d = Double.parseDouble(eElement.getElementsByTagName("controlY").item(0).getTextContent());
         Double e = Double.parseDouble(eElement.getElementsByTagName("x").item(0).getTextContent());
         Double f = Double.parseDouble(eElement.getElementsByTagName("y").item(0).getTextContent());
-        Double g = Double.parseDouble(eElement.getElementsByTagName("Duration").item(0).getTextContent()
-                .replaceAll("[^0-9]", ""));
-        Double h = Double.parseDouble(eElement.getElementsByTagName("Delay").item(0).getTextContent()
-                .replaceAll("[^0-9]", ""));
+        Double g = Double.parseDouble(eElement.getElementsByTagName("Delay").item(0).getTextContent()
+                .split(" ")[0]);
+        Double h = Double.parseDouble(eElement.getElementsByTagName("Duration").item(0).getTextContent()
+                .split(" ")[0]);
         path.getElements().addAll(new MoveTo(a, b), new QuadCurveTo(c, d, e, f));
         pathTransition.setPath(path);
         pathTransition.setDelay(Duration.millis(g));

@@ -1,6 +1,6 @@
 package animation;
 
-import Logic.GameObject;
+import Logic.GameObjects.GameObject;
 import javafx.animation.FadeTransition;
 import javafx.animation.PathTransition;
 import javafx.scene.canvas.Canvas;
@@ -13,11 +13,10 @@ public class Projector {
     private GameObject gameObject;
     private Duration pause;
 
-    public Projector(Double delay,Double duration) {
-        Render render =Render.getInstance();
-        gameObject = render.createObject();
+    public Projector(Double delay,Double duration , String mode) {
+        Render render = Render.getInstance();
+        gameObject = render.createObject(mode);
         pathTransition = render.generateTransitions(gameObject,duration);
-        pathTransition.setDelay(Duration.millis(delay));
         pathTransition.setDelay(Duration.millis(delay));
         pathTransition.play();
     }
