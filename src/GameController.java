@@ -39,6 +39,7 @@ import java.util.ResourceBundle;
 
 public class GameController implements Initializable {
     private AudioClip slice = new AudioClip(this.getClass().getResource("slice.wav").toString());
+    private AudioClip gameover = new AudioClip(this.getClass().getResource("gameover.wav").toString());
     @FXML
     private ImageView freeze;
     @FXML
@@ -159,6 +160,7 @@ public class GameController implements Initializable {
     }
 
     private void endGame() {
+        gameover.play();
         gameTimeLine.stop();
         if(mode.equals("Arcade"))timer.getTimeline().stop();
         for (Projector projector : projectors) {

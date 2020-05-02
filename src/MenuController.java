@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -27,6 +28,8 @@ import java.text.ParseException;
 
 
 public class MenuController implements Initializable {
+    private AudioClip game = new AudioClip(this.getClass().getResource("fruitninja.mp3").toString());
+    private AudioClip slice = new AudioClip(this.getClass().getResource("slice.wav").toString());
     @FXML
     private AnchorPane anchor;
     @FXML
@@ -40,9 +43,8 @@ public class MenuController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         Image image1 = new Image("cartoon.png");
         anchor.setCursor(new ImageCursor( image1 ,50, 50));
-        URL resource = getClass().getResource("slice.wav");
-        Media media = new Media(resource.toString());
-       final MediaPlayer mediaPlayer = new MediaPlayer(media);
+        game.setCycleCount(-1);
+        game.play();
         anchor.setOnDragDetected(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -50,7 +52,7 @@ public class MenuController implements Initializable {
             }
         });
         watermelon.setOnDragDetected(event -> {
-             mediaPlayer.play();
+             slice.play();
             try {
                 startClassic();
             } catch (IOException e) {
@@ -58,7 +60,7 @@ public class MenuController implements Initializable {
             }
         });
         strawberry.setOnDragDetected(event -> {
-             mediaPlayer.play();
+             slice.play();
             try {
                 startArcade();
             } catch (IOException e) {
@@ -66,7 +68,7 @@ public class MenuController implements Initializable {
             }
         });
         bomb.setOnDragDetected(event -> {
-            mediaPlayer.play();
+            slice.play();
             try {
                     startLoad();
                 } catch (IOException e) {
@@ -76,6 +78,7 @@ public class MenuController implements Initializable {
     }
 
     private void startArcade() throws IOException {
+            game.stop();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("background.fxml"));
             Stage stage = (Stage) anchor.getScene().getWindow();
@@ -88,6 +91,7 @@ public class MenuController implements Initializable {
 
     }
     private void startClassic() throws IOException {
+        game.stop();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("background.fxml"));
         Stage stage = (Stage) anchor.getScene().getWindow();
@@ -100,6 +104,7 @@ public class MenuController implements Initializable {
 
     }
     private void startLoad() throws IOException {
+        game.stop();
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("background.fxml"));
         Stage stage = (Stage) anchor.getScene().getWindow();
