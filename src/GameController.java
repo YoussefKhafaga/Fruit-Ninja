@@ -23,6 +23,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.AudioClip;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
@@ -37,9 +38,7 @@ import java.util.ResourceBundle;
 
 
 public class GameController implements Initializable {
-    URL resource = getClass().getResource("slice.wav");
-    Media media = new Media(resource.toString());
-    final MediaPlayer mediaPlayer = new MediaPlayer(media);
+    private AudioClip slice = new AudioClip(this.getClass().getResource("slice.wav").toString());
     @FXML
     private ImageView freeze;
     @FXML
@@ -141,7 +140,7 @@ public class GameController implements Initializable {
         projector.getGameObject().getCanvas().setOnMouseDragEntered(new EventHandler<MouseDragEvent>() {
             @Override
             public void handle(MouseDragEvent event) {
-                mediaPlayer.play();
+                slice.play();
                 if (projector.getGameObject().getType().equals("FreezingFruit")) {
                     freeze.setVisible(true);
                     Timeline freezeTimeLine = new Timeline(new KeyFrame(Duration.seconds(3.0), e -> {
