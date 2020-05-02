@@ -1,6 +1,6 @@
 package Logic.GameObjects;
 
-import Logic.Model;
+import Logic.Mementos.Model;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
 
@@ -15,7 +15,7 @@ public class ComboFruit extends FruitDecorator {
     }
 
     @Override
-    public void slice(Model model, Timeline gameTimeLine, Duration duration) {
+    public void slice(Model model, Timeline gameTimeLine) {
         model.setScore(model.getScore()+10);
         this.getCanvas().setDisable(true);
         this.setSliced(true);

@@ -1,6 +1,6 @@
 package Logic.FileAccess;
 
-import Logic.Model;
+import Logic.Mementos.Model;
 import animation.Projector;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;

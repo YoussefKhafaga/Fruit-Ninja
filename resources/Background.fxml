@@ -52,6 +52,8 @@
       <AnchorPane fx:id="anchor" layoutX="-63.0" layoutY="-1.0" prefHeight="388.0" prefWidth="689.0">
          <children>
             <Button fx:id="save" layoutX="63.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Save" />
+            <Button disable="true" layoutX="271.0" layoutY="239.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Exit" visible="false" />
+            <Button fx:id="restart" disable="true" layoutX="393.0" layoutY="239.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Restart" visible="false" />
          </children></AnchorPane>
    </children>
 </AnchorPane>

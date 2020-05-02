@@ -1,7 +1,6 @@
 package Logic.Mementos;
 
 import Logic.FileAccess.FileWrite;
-import Logic.Model;
 
 import javax.xml.parsers.ParserConfigurationException;
 

@@ -1,7 +1,9 @@
 package Controller;
 
 import Logic.GameLevels.Level;
-import Logic.Model;
+import Logic.Mementos.CareTaker;
+import Logic.Mementos.Memento;
+import Logic.Mementos.Model;
 import animation.Projector;
 import animation.Timer;
 import javafx.animation.KeyFrame;
@@ -10,15 +12,14 @@ import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.ImageCursor;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import javax.xml.parsers.ParserConfigurationException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
@@ -46,19 +47,34 @@ public class GameController implements Initializable {
     private Label Score;
     @FXML
     private Button save;
+    @FXML
+    private Button exit;
+    @FXML
+    private Button restart;
+
     private String mode;
     private ArrayList<Projector> projectors;
     private Timeline gameTimeLine;
-    private Duration y;
+    private int highScore;
     private Level level;
     private Timer timer;
     private Model model;
+    private CareTaker careTaker;
 
-    public GameController(Model model, String mode) {
+    public GameController(String mode) {
+        this.mode = mode;
+        model = new Model();
+    }
+
+    public GameController(Model model, String mode , int highScore) {
         this.projectors = model.getProjectors();
         this.mode = mode;
         this.level =new Level(model.getScore());
+        this.highScore = highScore;
         this.model = model;
+        careTaker = new CareTaker();
+        Memento memento = new Memento(model,highScore);
+        careTaker.setCurrentMemento(memento);
     }
 
     @Override
@@ -78,10 +94,24 @@ public class GameController implements Initializable {
         }else if (mode.equals("Load")){
             loadGame();
         }
+        restart.setOnAction(e->{
+            restartGame();
+        });
+        save.setOnAction(e->{
+            try {
+                saveGame();
+            } catch (ParserConfigurationException ex) {
+                ex.printStackTrace();
+            }
+        });
+        exit.setOnAction(e->{
+            exitGame();
+        });
     }
 
-    private void saveGame() {
-
+    private void saveGame() throws ParserConfigurationException {
+        careTaker.getCurrentMemento().saveModel();
+        exitGame();
     }
 
     private void startGame() {
@@ -106,6 +136,13 @@ public class GameController implements Initializable {
         }));
         gameTimeLine.setCycleCount(Timeline.INDEFINITE);
         gameTimeLine.playFrom(Duration.millis(4000));
+        save.setOnAction(e->{
+            try {
+                saveGame();
+            } catch (ParserConfigurationException ex) {
+                ex.printStackTrace();
+            }
+        });
     }
 
     private void slice(Projector projector) {
@@ -120,10 +157,8 @@ public class GameController implements Initializable {
                     freezeTimeLine.setOnFinished(e -> freeze.setVisible(false));
                 }
                 model.setProjectors(projectors);
-                projector.getGameObject().slice(model, gameTimeLine, y);
-                Score.setText("Score : " + model.getScore());
-                level.setLevelState(model.getScore());
-                if(!mode.equals("Arcade")) checkLives();
+                projector.getGameObject().slice(model, gameTimeLine);
+                updateGame();
                 projector.getPathTransition().stop();
                 projector.fade(anchor);
                 projectors.remove(projector);
@@ -144,6 +179,13 @@ public class GameController implements Initializable {
         life3.setVisible(true);
         life2.setVisible(true);
         life1.setVisible(true);
+        save.setVisible(false);
+        save.setDisable(true);
+        exit.setVisible(true);
+        exit.setDisable(false);
+        restart.setVisible(true);
+        restart.setDisable(false);
+
     }
 
     private void startTimer() {
@@ -159,9 +201,8 @@ public class GameController implements Initializable {
             life1.setVisible(false);
         } else if (model.getLives() == 1) {
             life2.setVisible(false);
-        } else if (model.getLives() == 0) {
+        } else if (model.getLives() <= 0) {
             life3.setVisible(false);
-        } else if (model.getLives() < 0) {
             endGame();
         }
     }
@@ -198,6 +239,37 @@ public class GameController implements Initializable {
         save.setVisible(false);
         save.setDisable(true);
         startGame();
+    }
+
+    private void updateGame(){
+        Score.setText("Score : " + model.getScore());
+        level.setLevelState(model.getScore());
+        if(!mode.equals("Arcade")) checkLives();
+
+    }
+
+    private void restartGame(){
+        model = new Model();
+        projectors = new ArrayList<>();
+        careTaker = new CareTaker();
+        Memento memento = new Memento(model,highScore);
+        careTaker.setCurrentMemento(memento);
+        life3.setVisible(true);
+        life3.setVisible(true);
+        life3.setVisible(true);
+        save.setVisible(true);
+        save.setDisable(false);
+        exit.setVisible(false);
+        exit.setDisable(true);
+        restart.setVisible(false);
+        restart.setDisable(true);
+        gameOver.setVisible(false);
+        if(mode.equals("Arcade"))startArcade();
+        else startGame();
+    }
+
+    private void exitGame(){
+
     }
 
 

@@ -1,6 +1,6 @@
 package Logic.GameObjects;
 
-import Logic.Model;
+import Logic.Mementos.Model;
 import animation.Projector;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -19,10 +19,10 @@ public class FreezingFruit extends FruitDecorator {
     }
 
     @Override
-    public void slice(Model model, Timeline gameTimeLine, Duration duration) {
+    public void slice(Model model, Timeline gameTimeLine) {
         this.getCanvas().setDisable(true);
         this.setSliced(true);
-        duration = gameTimeLine.getCurrentTime();
+        Duration duration = gameTimeLine.getCurrentTime();
         gameTimeLine.pause();
         for (Projector projector : model.getProjectors()) {
             projector.getPathTransition().pause();

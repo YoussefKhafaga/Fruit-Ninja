@@ -1,6 +1,6 @@
 package Logic.GameObjects;
 
-import Logic.Model;
+import Logic.Mementos.Model;
 import javafx.animation.Timeline;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -48,7 +48,7 @@ public  abstract class GameObject {
 
     public abstract String getType();
 
-    public abstract void slice(Model model, Timeline gameTimeLine, Duration duration);
+    public abstract void slice(Model model, Timeline gameTimeLine);
 
     public abstract void checkObject(Model model);
 

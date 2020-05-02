@@ -1,9 +1,7 @@
 import Controller.GameController;
 import Logic.FileAccess.FileRead;
-import Logic.GameLevels.Easy;
-import Logic.GameLevels.LevelState;
-import Logic.Mementos.Player;
-import Logic.Model;
+import Logic.FileAccess.FileWrite;
+import Logic.Mementos.Model;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,13 +16,14 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader();
         fileRead = new FileRead("file.xml");
+        FileWrite fileWrite = new FileWrite("file.xml");
         Model model = new Model();
-        Player player = new Player();
         loader.setLocation(getClass().getResource("Background.fxml"));
-        GameController gameController = new GameController(model,"Classic");
+        GameController gameController = new GameController(model,"Classic",50);
         loader.setController(gameController);
         AnchorPane root = loader.load();
         Scene scene = new Scene(root);
+        primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.show();
 

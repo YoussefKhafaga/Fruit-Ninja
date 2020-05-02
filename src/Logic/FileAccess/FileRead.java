@@ -1,7 +1,7 @@
 package Logic.FileAccess;
 
 import Logic.GameObjects.GameObject;
-import Logic.Model;
+import Logic.Mementos.Model;
 import Logic.GameObjects.ObjectFactory;
 import animation.Projector;
 import javafx.animation.PathTransition;

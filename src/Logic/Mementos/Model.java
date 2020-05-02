@@ -1,4 +1,4 @@
-package Logic;
+package Logic.Mementos;
 
 import animation.Projector;
 

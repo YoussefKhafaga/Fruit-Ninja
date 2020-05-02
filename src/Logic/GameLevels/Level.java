@@ -1,7 +1,5 @@
 package Logic.GameLevels;
 
-import Logic.Model;
-
 public class Level {
     private LevelState levelState;
     private int score;
