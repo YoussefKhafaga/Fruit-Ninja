@@ -12,7 +12,7 @@ public class PathFactory {
 
     public Path generatePath() {
         Random random = new Random();
-        int x = random.nextInt(4);
+        int x = random.nextInt(7);
         Path path = new Path();
         MoveTo moveTo = new MoveTo();
         QuadCurveTo quadCurveTo = new QuadCurveTo();
@@ -42,22 +42,22 @@ public class PathFactory {
                     -150, 600, 450);
             break;
             case 4:
-                moveTo.setX(350);
-                moveTo.setY(450);
-                quadCurveTo = new QuadCurveTo(450,
-                        -150, 600, 450);
+                moveTo.setX(800);
+                moveTo.setY(300);
+                quadCurveTo = new QuadCurveTo(-22,
+                        -130, -50, 400);
                 break;
             case 5:
-                moveTo.setX(350);
-                moveTo.setY(450);
-                quadCurveTo = new QuadCurveTo(450,
-                        -150, 600, 450);
+                moveTo.setX(-100);
+                moveTo.setY(300);
+                quadCurveTo = new QuadCurveTo(-22,
+                        -130, 800, 400);
                 break;
             case 6:
-                moveTo.setX(350);
-                moveTo.setY(450);
-                quadCurveTo = new QuadCurveTo(450,
-                        -150, 600, 450);
+                moveTo.setX(-100);
+                moveTo.setY(600);
+                quadCurveTo = new QuadCurveTo(-22,
+                        -150, 800, 300);
                 break;
 
         }

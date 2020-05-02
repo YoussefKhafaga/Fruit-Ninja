@@ -11,8 +11,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.ImageCursor;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -21,7 +19,6 @@ import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
-
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
@@ -66,8 +63,8 @@ public class GameController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Image blade = new Image("cartoon.png");
-        anchor.setCursor(new ImageCursor(blade, 20, 20));
+      //  Image blade = new Image("cartoon.png");
+      //  anchor.setCursor(new ImageCursor(blade, 20, 20));
         anchor.setOnDragDetected(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -75,16 +72,8 @@ public class GameController implements Initializable {
             }
         });
         if (mode.equals("Arcade")) {
-            startTimer();
-            life3.setVisible(false);
-            life2.setVisible(false);
-            life1.setVisible(false);
-            save.setVisible(false);
-            save.setDisable(true);
-            startGame();
+            startArcade();
         } else if (mode.equals("Classic")) {
-            int highScore = 50;
-            timerLabel.setText("HighScore:"+ highScore);
             startGame();
         }else if (mode.equals("Load")){
             loadGame();
@@ -199,6 +188,16 @@ public class GameController implements Initializable {
         });
 
 
+    }
+
+    private void startArcade(){
+        startTimer();
+        life3.setVisible(false);
+        life2.setVisible(false);
+        life1.setVisible(false);
+        save.setVisible(false);
+        save.setDisable(true);
+        startGame();
     }
 
 

@@ -2,6 +2,7 @@ import Controller.GameController;
 import Logic.FileAccess.FileRead;
 import Logic.GameLevels.Easy;
 import Logic.GameLevels.LevelState;
+import Logic.Mementos.Player;
 import Logic.Model;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -17,7 +18,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader();
         fileRead = new FileRead("file.xml");
-        Model model = fileRead.getSavedModel();
+        Model model = new Model();
+        Player player = new Player();
         loader.setLocation(getClass().getResource("Background.fxml"));
         GameController gameController = new GameController(model,"Classic");
         loader.setController(gameController);

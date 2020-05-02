@@ -8,6 +8,6 @@ public class CareTaker {
     }
 
     public void setCurrentMemento(Memento currentMemento) {
-        this.currentMemento = currentMemento;
+        this.currentMemento =new Memento(currentMemento.getModel(),currentMemento.getHighScore());
     }
 }
