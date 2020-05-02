@@ -5,7 +5,7 @@ public class Easy implements LevelState {
     private Double duration;
     public Easy(){
         this.delay = 400.0;
-        this.duration = 5000.0;
+        this.duration = 5500.0;
     }
     @Override
     public Double getDelay() {

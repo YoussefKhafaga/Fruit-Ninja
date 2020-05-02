@@ -19,9 +19,9 @@ public class Level {
 
     public void setLevelState(int score) {
 
-        if (score <= 10) {
+        if (score <= 20) {
             levelState = new Easy();
-        } else if (score >= 10 && score <= 20) {
+        } else if (score >= 20 && score <= 40) {
             levelState = new Normal();
         } else {
             levelState = new Hard();

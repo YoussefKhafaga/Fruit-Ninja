@@ -4,8 +4,8 @@ public class Normal implements LevelState {
     private Double delay;
     private Double duration;
     public Normal(){
-        this.delay=300.00;
-        this.duration=3500.00;
+        this.delay=400.0;
+        this.duration=4500.0;
     }
     @Override
     public Double getDelay() {

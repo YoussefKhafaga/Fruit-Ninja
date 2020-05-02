@@ -199,22 +199,29 @@ public class GameController implements Initializable {
 
     private void loadGame() throws ParseException {
         model = fileRead.getSavedModel();
+        level = new Level(model.getScore());
         Score.setText("Score:" + model.getScore());
         checkLives();
         if(model.getProjectors().size()!=0){
-            projectors = this.model.getProjectors();
-            Timeline load = new Timeline(new KeyFrame(Duration.millis(level.getDuration() + 3* level.getDelay()), e ->{
+            Timeline freeze = new Timeline(new KeyFrame(Duration.millis(level.getDuration() + 3* level.getDelay()), e ->{}));
+            freeze.play();
+            freeze.setOnFinished(e->{
+                projectors = this.model.getProjectors();
                 for (Projector projector : projectors) {
                     anchor.getChildren().add(projector.getGameObject().getCanvas());
                     projector.getPathTransition().playFrom(projector.getPause());
                     slice(projector);
                     projector.getPathTransition().setOnFinished(me -> {
+                        projector.getGameObject().checkObject(model);
+                        if(!mode.equals("Arcade")) checkLives();
                         projectors.remove(projector);
+                        anchor.getChildren().remove(projector.getGameObject().getCanvas());
                     });
                 }
-            }));
-            load.setCycleCount(2);
-            load.playFrom(Duration.millis(level.getDuration() + 3 * level.getDelay()));
+            });
+            Timeline load = new Timeline(new KeyFrame(Duration.millis(level.getDuration() + 3* level.getDelay()), e ->{}));
+            load.setCycleCount(1);
+            load.play();
             load.setOnFinished(e -> {
                 projectors = new ArrayList<>();
                 startGame();
