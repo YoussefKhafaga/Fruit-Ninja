@@ -3,46 +3,10 @@
     <highScore>150</highScore>
     <model>
         <projector>
-            <pause>2019.1666666666667 ms</pause>
-            <Duration>3500.0 ms</Duration>
-            <Delay>0.0 ms</Delay>
-            <type>strawberry</type>
-            <moveX>-100.0</moveX>
-            <moveY>600.0</moveY>
-            <controlX>-22.0</controlX>
-            <controlY>-150.0</controlY>
-            <x>800.0</x>
-            <y>300.0</y>
-        </projector>
-        <projector>
-            <pause>1523.6666666666667 ms</pause>
-            <Duration>4500.0 ms</Duration>
-            <Delay>300.0 ms</Delay>
-            <type>strawberry</type>
-            <moveX>800.0</moveX>
-            <moveY>300.0</moveY>
-            <controlX>-22.0</controlX>
-            <controlY>-130.0</controlY>
-            <x>-50.0</x>
-            <y>400.0</y>
-        </projector>
-        <projector>
-            <pause>1158.5 ms</pause>
-            <Duration>4500.0 ms</Duration>
-            <Delay>600.0 ms</Delay>
-            <type>banana</type>
-            <moveX>800.0</moveX>
-            <moveY>300.0</moveY>
-            <controlX>-22.0</controlX>
-            <controlY>-130.0</controlY>
-            <x>-50.0</x>
-            <y>400.0</y>
-        </projector>
-        <projector>
-            <pause>849.5 ms</pause>
-            <Duration>3500.0 ms</Duration>
-            <Delay>900.0 ms</Delay>
-            <type>FreezingFruit</type>
+            <pause>2504.3333333333335 ms</pause>
+            <Duration>5500.0 ms</Duration>
+            <Delay>400.0 ms</Delay>
+            <type>DangerousBomb</type>
             <moveX>350.0</moveX>
             <moveY>450.0</moveY>
             <controlX>350.0</controlX>
@@ -50,7 +14,19 @@
             <x>600.0</x>
             <y>450.0</y>
         </projector>
-        <score>12</score>
+        <projector>
+            <pause>1635.6666666666667 ms</pause>
+            <Duration>5500.0 ms</Duration>
+            <Delay>1200.0 ms</Delay>
+            <type>ComboFruit</type>
+            <moveX>350.0</moveX>
+            <moveY>450.0</moveY>
+            <controlX>350.0</controlX>
+            <controlY>-400.0</controlY>
+            <x>600.0</x>
+            <y>450.0</y>
+        </projector>
+        <score>1</score>
         <lives>3</lives>
     </model>
 </game>

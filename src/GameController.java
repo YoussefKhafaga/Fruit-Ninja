@@ -286,7 +286,7 @@ public class GameController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Image blade = new Image("cartoon.png");
-        anchor.setCursor(new ImageCursor(blade, 20, 20));
+        anchor.setCursor(new ImageCursor(blade, 40, 40));
         anchor.setOnDragDetected(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {

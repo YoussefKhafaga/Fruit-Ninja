@@ -39,7 +39,7 @@ public class MenuController implements Initializable {
     @FXML
     public void initialize(URL location, ResourceBundle resources) {
         Image image1 = new Image("cartoon.png");
-        anchor.setCursor(new ImageCursor( image1 ,  20, 20));
+        anchor.setCursor(new ImageCursor( image1 ,50, 50));
         URL resource = getClass().getResource("slice.wav");
         Media media = new Media(resource.toString());
        final MediaPlayer mediaPlayer = new MediaPlayer(media);
