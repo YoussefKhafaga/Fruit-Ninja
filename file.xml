@@ -1,7 +1,31 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <game>
-    <highScore>140</highScore>
+    <highScore>10</highScore>
     <model>
+        <projector>
+            <pause>2854.8333333333335 ms</pause>
+            <Duration>5000.0 ms</Duration>
+            <Delay>800.0 ms</Delay>
+            <type>DangerousBomb</type>
+            <moveX>800.0</moveX>
+            <moveY>300.0</moveY>
+            <controlX>-22.0</controlX>
+            <controlY>-130.0</controlY>
+            <x>-50.0</x>
+            <y>400.0</y>
+        </projector>
+        <projector>
+            <pause>2253.0 ms</pause>
+            <Duration>5000.0 ms</Duration>
+            <Delay>1200.0 ms</Delay>
+            <type>FatalBomb</type>
+            <moveX>350.0</moveX>
+            <moveY>450.0</moveY>
+            <controlX>450.0</controlX>
+            <controlY>-150.0</controlY>
+            <x>600.0</x>
+            <y>450.0</y>
+        </projector>
         <score>0</score>
         <lives>3</lives>
     </model>

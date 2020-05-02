@@ -40,19 +40,29 @@ public  class FileRead {
             try {
                 doc = dbuild.parse(new File(outputFile));
             } catch (SAXException | IOException e) {
-                e.printStackTrace();
+                System.err.println("empty file");
             }
         }
     }
     public int getHighScore(){
-        NodeList nList = doc.getElementsByTagName("highScore");
-        Element element= (Element) nList.item(0);
-        int highScore = Integer.parseInt(element.getTextContent());
+        int highScore=0;
+        if (doc != null ){
+            NodeList nList = doc.getElementsByTagName("highScore");
+            Node node = nList.item(0);
+            if (node instanceof Element) {
+                Element element= (Element) nList.item(0);
+                 highScore = Integer.parseInt(element.getTextContent());
+            }
+
+        }
         return  highScore;
     }
 
     public Model getSavedModel() throws ParseException {
         Model model = new Model();
+        if (doc == null){
+            return model;
+        }
         NodeList nList = doc.getElementsByTagName("model");
         ArrayList<Projector> projectors = new ArrayList<>();
         ObjectFactory objectFactory = new ObjectFactory();

@@ -31,25 +31,26 @@ public class FileWrite {
             e.printStackTrace();
         }
     }
-    private static Document dom = documentBuilder.newDocument();
+    private static Document document = documentBuilder.newDocument();
 
     public FileWrite(String outputFile) {
         this.outputFile = outputFile;
     }
+
     public void saveModel(Model model,int highScore) throws ParserConfigurationException {
-        Element rootEle = dom.createElement("game");
-        Element score = dom.createElement("highScore");
-        score.appendChild(dom.createTextNode(String.valueOf(highScore)));
+        Element rootEle = document.createElement("game");
+        Element score = document.createElement("highScore");
+        score.appendChild(document.createTextNode(String.valueOf(highScore)));
         Element eus = modelCreate(model);
         rootEle.appendChild(score);
         rootEle.appendChild(eus);
-        dom.appendChild(rootEle);
+        document.appendChild(rootEle);
         try {
             Transformer tr = TransformerFactory.newInstance().newTransformer();
             tr.setOutputProperty(OutputKeys.INDENT, "yes");
             tr.setOutputProperty(OutputKeys.METHOD, "xml");
             tr.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
-            tr.transform(new DOMSource(dom),
+            tr.transform(new DOMSource(document),
                     new StreamResult(new FileOutputStream(outputFile)));
 
         } catch (TransformerException te) {
@@ -59,36 +60,36 @@ public class FileWrite {
         }
     }
     public static Element modelCreate(Model model) {
-        Element eus = dom.createElement("model");
-        Element score = dom.createElement("score");
-        score.appendChild(dom.createTextNode(String.valueOf(model.getScore())));
-        Element lives = dom.createElement("lives");
-        lives.appendChild(dom.createTextNode(String.valueOf(model.getLives())));
+        Element eus = document.createElement("model");
+        Element score = document.createElement("score");
+        score.appendChild(document.createTextNode(String.valueOf(model.getScore())));
+        Element lives = document.createElement("lives");
+        lives.appendChild(document.createTextNode(String.valueOf(model.getLives())));
         for (Projector o : model.getProjectors()) {
-            Element projector = dom.createElement("projector");
-            Element pause = dom.createElement("pause");
-            pause.appendChild(dom.createTextNode(String.valueOf(o.getPause())));
-            Element duration = dom.createElement("Duration");
-            duration.appendChild(dom.createTextNode(String.valueOf(o.getPathTransition().getDuration())));
-            Element delay = dom.createElement("Duration");
-            duration.appendChild(dom.createTextNode(String.valueOf(o.getPathTransition().getDelay())));
-            Element type = dom.createElement("type");
-            type.appendChild(dom.createTextNode(String.valueOf(o.getGameObject().getType())));
-            Element x = dom.createElement("moveX");
-            Element y = dom.createElement("moveY");
+            Element projector = document.createElement("projector");
+            Element pause = document.createElement("pause");
+            pause.appendChild(document.createTextNode(String.valueOf(o.getPause())));
+            Element duration = document.createElement("Duration");
+            duration.appendChild(document.createTextNode(String.valueOf(o.getPathTransition().getDuration())));
+            Element delay = document.createElement("Delay");
+            delay.appendChild(document.createTextNode(String.valueOf(o.getPathTransition().getDelay())));
+            Element type = document.createElement("type");
+            type.appendChild(document.createTextNode(String.valueOf(o.getGameObject().getType())));
+            Element x = document.createElement("moveX");
+            Element y = document.createElement("moveY");
             Path path = (Path) o.getPathTransition().getPath();
             MoveTo move = (MoveTo) path.getElements().get(0);
             QuadCurveTo quadCurveTo = (QuadCurveTo) path.getElements().get(1);
-            x.appendChild(dom.createTextNode(String.valueOf(move.getX())));
-            y.appendChild(dom.createTextNode(String.valueOf(move.getY())));
-            Element controlX = dom.createElement("controlX");
-            controlX.appendChild(dom.createTextNode(String.valueOf(quadCurveTo.getControlX())));
-            Element controlY = dom.createElement("controlY");
-            controlY.appendChild(dom.createTextNode(String.valueOf(quadCurveTo.getControlY())));
-            Element quadX = dom.createElement("x");
-            quadX.appendChild(dom.createTextNode(String.valueOf(quadCurveTo.getX())));
-            Element quadY = dom.createElement("y");
-            quadY.appendChild(dom.createTextNode(String.valueOf(quadCurveTo.getY())));
+            x.appendChild(document.createTextNode(String.valueOf(move.getX())));
+            y.appendChild(document.createTextNode(String.valueOf(move.getY())));
+            Element controlX = document.createElement("controlX");
+            controlX.appendChild(document.createTextNode(String.valueOf(quadCurveTo.getControlX())));
+            Element controlY = document.createElement("controlY");
+            controlY.appendChild(document.createTextNode(String.valueOf(quadCurveTo.getControlY())));
+            Element quadX = document.createElement("x");
+            quadX.appendChild(document.createTextNode(String.valueOf(quadCurveTo.getX())));
+            Element quadY = document.createElement("y");
+            quadY.appendChild(document.createTextNode(String.valueOf(quadCurveTo.getY())));
             projector.appendChild(pause);
             projector.appendChild(duration);
             projector.appendChild(delay);

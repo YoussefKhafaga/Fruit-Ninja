@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="388.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="anchorPane" focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="388.0" prefWidth="626.0" xmlns="http://javafx.com/javafx/8.0.241" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="391.0" fitWidth="636.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -19,12 +19,12 @@
             <Image url="@freezy.png" />
          </image>
       </ImageView>
-      <Label fx:id="timerLabel" layoutX="482.0" layoutY="43.0" prefHeight="46.0" prefWidth="133.0" text="00:00" textFill="#f8f7f7">
+      <Label fx:id="timerLabel" layoutX="470.0" layoutY="43.0" prefHeight="35.0" prefWidth="133.0" text="0" textFill="#f8f7f7">
          <font>
-            <Font name="System Bold" size="20.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="Score" layoutX="482.0" layoutY="12.0" prefHeight="35.0" prefWidth="133.0" text="Score : 0000" textFill="#fcfcfc">
+      <Label fx:id="Score" layoutX="470.0" layoutY="12.0" prefHeight="35.0" prefWidth="133.0" text="Score : 0000" textFill="#fcfcfc">
          <font>
             <Font name="System Bold" size="20.0" />
          </font>
@@ -52,7 +52,7 @@
       <AnchorPane fx:id="anchor" layoutX="-63.0" layoutY="-1.0" prefHeight="388.0" prefWidth="689.0">
          <children>
             <Button fx:id="save" layoutX="63.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Save" />
-            <Button disable="true" layoutX="271.0" layoutY="239.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Exit" visible="false" />
+            <Button fx:id="exit" disable="true" layoutX="271.0" layoutY="239.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Exit" visible="false" />
             <Button fx:id="restart" disable="true" layoutX="393.0" layoutY="239.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="92.0" text="Restart" visible="false" />
          </children></AnchorPane>
    </children>

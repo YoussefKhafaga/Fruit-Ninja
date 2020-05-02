@@ -1,5 +1,5 @@
-package Controller;
-
+import Logic.FileAccess.FileRead;
+import Logic.FileAccess.FileWrite;
 import Logic.GameLevels.Level;
 import Logic.Mementos.CareTaker;
 import Logic.Mementos.Memento;
@@ -11,16 +11,24 @@ import javafx.animation.PathTransition;
 import javafx.animation.Timeline;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.ImageCursor;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 import java.net.URL;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
@@ -51,9 +59,9 @@ public class GameController implements Initializable {
     private Button exit;
     @FXML
     private Button restart;
-
+    private FileRead fileRead = new FileRead("file.xml");
     private String mode;
-    private ArrayList<Projector> projectors;
+    private ArrayList<Projector> projectors = new ArrayList<>();
     private Timeline gameTimeLine;
     private int highScore;
     private Level level;
@@ -61,57 +69,40 @@ public class GameController implements Initializable {
     private Model model;
     private CareTaker careTaker;
 
-    public GameController(String mode) {
+    public GameController(String mode){
         this.mode = mode;
-        model = new Model();
-    }
-
-    public GameController(Model model, String mode , int highScore) {
-        this.projectors = model.getProjectors();
-        this.mode = mode;
-        this.level =new Level(model.getScore());
-        this.highScore = highScore;
-        this.model = model;
+        highScore = fileRead.getHighScore();
+        this.model = new Model();
         careTaker = new CareTaker();
-        Memento memento = new Memento(model,highScore);
-        careTaker.setCurrentMemento(memento);
+        careTaker.setCurrentMemento(new Memento(model,highScore));
     }
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-      //  Image blade = new Image("cartoon.png");
-      //  anchor.setCursor(new ImageCursor(blade, 20, 20));
-        anchor.setOnDragDetected(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                anchor.startFullDrag();
-            }
-        });
-        if (mode.equals("Arcade")) {
-            startArcade();
-        } else if (mode.equals("Classic")) {
-            startGame();
-        }else if (mode.equals("Load")){
-            loadGame();
+    private void saveGame() throws ParserConfigurationException, IOException, ParseException {
+        save.setDisable(true);
+        gameTimeLine.pause();
+        for(Projector projector : projectors){
+            projector.getPathTransition().pause();
+            projector.setPause(projector.getPathTransition().getCurrentTime());
         }
-        restart.setOnAction(e->{
-            restartGame();
-        });
-        save.setOnAction(e->{
-            try {
-                saveGame();
-            } catch (ParserConfigurationException ex) {
-                ex.printStackTrace();
-            }
-        });
-        exit.setOnAction(e->{
-            exitGame();
-        });
+        model.setProjectors(projectors);
+        careTaker.setCurrentMemento(new Memento(model,highScore));
+        careTaker.getCurrentMemento().saveModel();
+        exitGame(0);
     }
 
-    private void saveGame() throws ParserConfigurationException {
-        careTaker.getCurrentMemento().saveModel();
-        exitGame();
+    private void exitGame(int x) throws IOException, ParseException, ParserConfigurationException {
+        if(x!=0){
+            FileWrite fileWrite = new FileWrite("file.xml");
+            Model model = fileRead.getSavedModel();
+            fileWrite.saveModel(model,highScore);
+        }
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("mainMenu.fxml"));
+        Stage stage = (Stage) anchor.getScene().getWindow();
+        AnchorPane root = loader.load();
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 
     private void startGame() {
@@ -139,7 +130,7 @@ public class GameController implements Initializable {
         save.setOnAction(e->{
             try {
                 saveGame();
-            } catch (ParserConfigurationException ex) {
+            } catch (ParserConfigurationException | IOException | ParseException ex) {
                 ex.printStackTrace();
             }
         });
@@ -185,7 +176,6 @@ public class GameController implements Initializable {
         exit.setDisable(false);
         restart.setVisible(true);
         restart.setDisable(false);
-
     }
 
     private void startTimer() {
@@ -207,26 +197,33 @@ public class GameController implements Initializable {
         }
     }
 
-    private void loadGame() {
-        Score.setText("" + model.getScore());
+    private void loadGame() throws ParseException {
+        model = fileRead.getSavedModel();
+        Score.setText("Score:" + model.getScore());
         checkLives();
-        projectors = this.model.getProjectors();
-        Timeline load = new Timeline(new KeyFrame(Duration.seconds(level.getDuration() + 3* level.getDelay()), e ->{
-            for (Projector projector : projectors) {
-                anchor.getChildren().add(projector.getGameObject().getCanvas());
-                projector.getPathTransition().playFrom(projector.getPause());
-                slice(projector);
-                projector.getPathTransition().setOnFinished(me -> {
-                    projectors.remove(projector);
-                });
-            }
-        }));
-        load.setCycleCount(2);
-        load.playFrom(Duration.millis(level.getDuration() + 3 * level.getDelay()));
-        load.setOnFinished(e -> {
-            projectors = new ArrayList<>();
+        if(model.getProjectors().size()!=0){
+            projectors = this.model.getProjectors();
+            Timeline load = new Timeline(new KeyFrame(Duration.millis(level.getDuration() + 3* level.getDelay()), e ->{
+                for (Projector projector : projectors) {
+                    anchor.getChildren().add(projector.getGameObject().getCanvas());
+                    projector.getPathTransition().playFrom(projector.getPause());
+                    slice(projector);
+                    projector.getPathTransition().setOnFinished(me -> {
+                        projectors.remove(projector);
+                    });
+                }
+            }));
+            load.setCycleCount(2);
+            load.playFrom(Duration.millis(level.getDuration() + 3 * level.getDelay()));
+            load.setOnFinished(e -> {
+                projectors = new ArrayList<>();
+                startGame();
+            });
+        }
+        else {
+            level = new Level(model.getScore());
             startGame();
-        });
+        }
 
 
     }
@@ -245,6 +242,8 @@ public class GameController implements Initializable {
         Score.setText("Score : " + model.getScore());
         level.setLevelState(model.getScore());
         if(!mode.equals("Arcade")) checkLives();
+        updateHighScore();
+        careTaker.setCurrentMemento(new Memento(model,highScore));
 
     }
 
@@ -254,6 +253,7 @@ public class GameController implements Initializable {
         careTaker = new CareTaker();
         Memento memento = new Memento(model,highScore);
         careTaker.setCurrentMemento(memento);
+        Score.setText("Score:"+0);
         life3.setVisible(true);
         life3.setVisible(true);
         life3.setVisible(true);
@@ -268,10 +268,63 @@ public class GameController implements Initializable {
         else startGame();
     }
 
-    private void exitGame(){
+    private void updateHighScore() {
+        if (model.getScore() > highScore) {
+            timerLabel.setText("HighScore" + model.getScore());
+            highScore = model.getScore();
+        }
+    }
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        Image blade = new Image("cartoon.png");
+        anchor.setCursor(new ImageCursor(blade, 20, 20));
+        anchor.setOnDragDetected(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                anchor.startFullDrag();
+            }
+        });
+        if (mode.equals("Arcade")) {
+            this.level = new Level(20);
+            startArcade();
+        } else if (mode.equals("Classic")) {
+            this.level =new Level(model.getScore());
+            Score.setText("Score:"+model.getScore());
+            timerLabel.setText("HighScore:"+highScore);
+            startGame();
+        }else if (mode.equals("Load")){
+            timerLabel.setText("HighScore:"+highScore);
+            {
+                try {
+                    loadGame();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+        restart.setOnAction(e->{
+            restartGame();
+        });
+        save.setOnAction(e->{
+            try {
+                saveGame();
+            } catch (ParserConfigurationException | IOException | ParseException ex) {
+                ex.printStackTrace();
+            }
+        });
+        exit.setOnAction(e->{
+            try {
+                exitGame(1);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            } catch (ParseException ex) {
+                ex.printStackTrace();
+            } catch (ParserConfigurationException ex) {
+                ex.printStackTrace();
+            }
+        });
 
     }
-
-
 }
 

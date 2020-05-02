@@ -23,4 +23,12 @@ public class Memento {
         FileWrite fileWrite = new FileWrite("file.xml");
         fileWrite.saveModel(this.model,this.highScore);
     }
+
+    public void setModel(Model model) {
+        this.model = model;
+    }
+
+    public void setHighScore(int highScore) {
+        this.highScore = highScore;
+    }
 }
