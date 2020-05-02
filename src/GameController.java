@@ -23,6 +23,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javax.xml.parsers.ParserConfigurationException;
@@ -35,6 +37,9 @@ import java.util.ResourceBundle;
 
 
 public class GameController implements Initializable {
+    URL resource = getClass().getResource("slice.wav");
+    Media media = new Media(resource.toString());
+    final MediaPlayer mediaPlayer = new MediaPlayer(media);
     @FXML
     private ImageView freeze;
     @FXML
@@ -68,7 +73,6 @@ public class GameController implements Initializable {
     private Timer timer;
     private Model model;
     private CareTaker careTaker;
-
     public GameController(String mode){
         this.mode = mode;
         highScore = fileRead.getHighScore();
@@ -76,7 +80,6 @@ public class GameController implements Initializable {
         careTaker = new CareTaker();
         careTaker.setCurrentMemento(new Memento(model,highScore));
     }
-
     private void saveGame() throws ParserConfigurationException, IOException, ParseException {
         save.setDisable(true);
         gameTimeLine.pause();
@@ -89,7 +92,6 @@ public class GameController implements Initializable {
         careTaker.getCurrentMemento().saveModel();
         exitGame(0);
     }
-
     private void exitGame(int x) throws IOException, ParseException, ParserConfigurationException {
         if(x!=0){
             FileWrite fileWrite = new FileWrite("file.xml");
@@ -104,7 +106,6 @@ public class GameController implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
-
     private void startGame() {
         gameTimeLine = new Timeline(new KeyFrame(Duration.millis(level.getDuration() + 3 * level.getDelay()), e -> {
             for (int i = 0; i < 4; i++) {
@@ -140,6 +141,7 @@ public class GameController implements Initializable {
         projector.getGameObject().getCanvas().setOnMouseDragEntered(new EventHandler<MouseDragEvent>() {
             @Override
             public void handle(MouseDragEvent event) {
+                mediaPlayer.play();
                 if (projector.getGameObject().getType().equals("FreezingFruit")) {
                     freeze.setVisible(true);
                     Timeline freezeTimeLine = new Timeline(new KeyFrame(Duration.seconds(3.0), e -> {
