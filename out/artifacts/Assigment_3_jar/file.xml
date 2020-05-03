@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<game>
+    <highScore>150</highScore>
+    <model>
+        <projector>
+            <pause>2792.5 ms</pause>
+            <Duration>5500.0 ms</Duration>
+            <Delay>0.0 ms</Delay>
+            <type>DangerousBomb</type>
+            <moveX>350.0</moveX>
+            <moveY>450.0</moveY>
+            <controlX>350.0</controlX>
+            <controlY>-400.0</controlY>
+            <x>600.0</x>
+            <y>450.0</y>
+        </projector>
+        <projector>
+            <pause>2386.3333333333335 ms</pause>
+            <Duration>5500.0 ms</Duration>
+            <Delay>400.0 ms</Delay>
+            <type>ComboFruit</type>
+            <moveX>-100.0</moveX>
+            <moveY>300.0</moveY>
+            <controlX>-22.0</controlX>
+            <controlY>-130.0</controlY>
+            <x>800.0</x>
+            <y>400.0</y>
+        </projector>
+        <projector>
+            <pause>1809.3333333333333 ms</pause>
+            <Duration>5500.0 ms</Duration>
+            <Delay>800.0 ms</Delay>
+            <type>DangerousBomb</type>
+            <moveX>500.0</moveX>
+            <moveY>450.0</moveY>
+            <controlX>450.0</controlX>
+            <controlY>-200.0</controlY>
+            <x>300.0</x>
+            <y>450.0</y>
+        </projector>
+        <projector>
+            <pause>1349.5 ms</pause>
+            <Duration>5500.0 ms</Duration>
+            <Delay>1200.0 ms</Delay>
+            <type>banana</type>
+            <moveX>-100.0</moveX>
+            <moveY>600.0</moveY>
+            <controlX>-22.0</controlX>
+            <controlY>-150.0</controlY>
+            <x>800.0</x>
+            <y>300.0</y>
+        </projector>
+        <score>0</score>
+        <lives>3</lives>
+    </model>
+</game>
