@@ -64,16 +64,17 @@ public class GameController implements Initializable {
     private Button exit;
     @FXML
     private Button restart;
-    private FileRead fileRead = new FileRead("file.xml");
     private String mode;
     private ArrayList<Projector> projectors = new ArrayList<>();
+    private Model savedModel ;
     private Timeline gameTimeLine;
     private int highScore;
     private Level level;
     private Timer timer;
     private Model model;
     private CareTaker careTaker;
-    public GameController(String mode){
+    public GameController(String mode)  {
+        FileRead fileRead = new FileRead("file.xml");
         this.mode = mode;
         highScore = fileRead.getHighScore();
         this.model = new Model();
@@ -95,8 +96,7 @@ public class GameController implements Initializable {
     private void exitGame(int x) throws IOException, ParseException, ParserConfigurationException {
         if(x!=0){
             FileWrite fileWrite = new FileWrite("file.xml");
-            Model model = fileRead.getSavedModel();
-            fileWrite.saveModel(model,highScore);
+            fileWrite.saveModel(savedModel,highScore);
         }
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("mainMenu.fxml"));
@@ -201,6 +201,7 @@ public class GameController implements Initializable {
     }
 
     private void loadGame() throws ParseException {
+        FileRead fileRead = new FileRead("file.xml");
         model = fileRead.getSavedModel();
         level = new Level(model.getScore());
         Score.setText("Score:" + model.getScore());
@@ -286,6 +287,12 @@ public class GameController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        FileRead fileRead = new FileRead("file.xml");
+        try {
+            savedModel = fileRead.getSavedModel();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         Image blade = new Image("cartoon.png");
         anchor.setCursor(new ImageCursor(blade, 40, 40));
         anchor.setOnDragDetected(new EventHandler<MouseEvent>() {
@@ -334,6 +341,7 @@ public class GameController implements Initializable {
                 ex.printStackTrace();
             }
         });
+
 
     }
 }
