@@ -3,30 +3,54 @@
     <highScore>150</highScore>
     <model>
         <projector>
-            <pause>2504.3333333333335 ms</pause>
+            <pause>2093.0 ms</pause>
             <Duration>5500.0 ms</Duration>
-            <Delay>400.0 ms</Delay>
-            <type>DangerousBomb</type>
-            <moveX>350.0</moveX>
+            <Delay>0.0 ms</Delay>
+            <type>FreezingFruit</type>
+            <moveX>600.0</moveX>
             <moveY>450.0</moveY>
             <controlX>350.0</controlX>
             <controlY>-400.0</controlY>
+            <x>100.0</x>
+            <y>450.0</y>
+        </projector>
+        <projector>
+            <pause>1425.6666666666667 ms</pause>
+            <Duration>5500.0 ms</Duration>
+            <Delay>400.0 ms</Delay>
+            <type>DangerousBomb</type>
+            <moveX>500.0</moveX>
+            <moveY>450.0</moveY>
+            <controlX>450.0</controlX>
+            <controlY>-200.0</controlY>
+            <x>300.0</x>
+            <y>450.0</y>
+        </projector>
+        <projector>
+            <pause>996.5 ms</pause>
+            <Duration>5500.0 ms</Duration>
+            <Delay>800.0 ms</Delay>
+            <type>watermelon</type>
+            <moveX>350.0</moveX>
+            <moveY>450.0</moveY>
+            <controlX>450.0</controlX>
+            <controlY>-150.0</controlY>
             <x>600.0</x>
             <y>450.0</y>
         </projector>
         <projector>
-            <pause>1635.6666666666667 ms</pause>
+            <pause>582.1666666666666 ms</pause>
             <Duration>5500.0 ms</Duration>
             <Delay>1200.0 ms</Delay>
-            <type>ComboFruit</type>
+            <type>watermelon</type>
             <moveX>350.0</moveX>
             <moveY>450.0</moveY>
-            <controlX>350.0</controlX>
-            <controlY>-400.0</controlY>
+            <controlX>450.0</controlX>
+            <controlY>-150.0</controlY>
             <x>600.0</x>
             <y>450.0</y>
         </projector>
-        <score>1</score>
+        <score>0</score>
         <lives>3</lives>
     </model>
 </game>

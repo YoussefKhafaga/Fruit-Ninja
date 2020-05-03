@@ -65,6 +65,7 @@ public class GameController implements Initializable {
     @FXML
     private Button restart;
     private FileRead fileRead = new FileRead("file.xml");
+    private Model savedModel;
     private String mode;
     private ArrayList<Projector> projectors = new ArrayList<>();
     private Timeline gameTimeLine;
@@ -95,8 +96,7 @@ public class GameController implements Initializable {
     private void exitGame(int x) throws IOException, ParseException, ParserConfigurationException {
         if(x!=0){
             FileWrite fileWrite = new FileWrite("file.xml");
-            Model model = fileRead.getSavedModel();
-            fileWrite.saveModel(model,highScore);
+            fileWrite.saveModel(savedModel,highScore);
         }
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("mainMenu.fxml"));
@@ -286,6 +286,11 @@ public class GameController implements Initializable {
     }
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        try {
+            savedModel = fileRead.getSavedModel();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         Image blade = new Image("cartoon.png");
         anchor.setCursor(new ImageCursor(blade, 40, 40));
         anchor.setOnDragDetected(new EventHandler<MouseEvent>() {
@@ -325,7 +330,7 @@ public class GameController implements Initializable {
         });
         exit.setOnAction(e->{
             try {
-                exitGame(1);
+                exitGame(0);
             } catch (IOException ex) {
                 ex.printStackTrace();
             } catch (ParseException ex) {
